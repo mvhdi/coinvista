@@ -435,6 +435,7 @@ console.log(algo);
     //   }
     // })
     .format({"text": function(text,key) {
+      // console.log(text)
     if (text == "Bitcoin") {
         var newV =  text.toUpperCase()+"  "+tickerMap["Bitcoin"][10]+"%"+"\n "+"\n"+ "$"+tickerMap["Bitcoin"][6]
         return newV
@@ -457,7 +458,8 @@ console.log(algo);
 
      .mouse({                
                         // key will also take custom function
-      "over": function(d){draws(d)}   
+      "over": function(d){draws(d)},
+      "move": function(d){draws(d)}    
     })  
 
     .draw()
@@ -465,17 +467,23 @@ console.log(algo);
 
 
 function draws(value){
-    if (value != currentLevel){
+    
       currentLevel = value;
-
+      console.log(value["d3plus"]["share"])
+      // console.log(value)
       var x = document.getElementById("boob" );
-    if (currentLevel["name"] === "XRP") {
+    if (value["name"] === "XRP") {
+      if(value["d3plus"]["share"] === 1){
+        document.getElementById("myFrame").src = "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505";
         x.style.display = "block";
+      }
     } else {
         x.style.display = "none";
     }
 
-        document.getElementById("myFrame").src = "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505";
+        
+   
+      
     
 
     
@@ -522,7 +530,7 @@ function draws(value){
    
 
 
-}
+
 //     var i = 0;
 // while (i<100){
 //     // console.log(ticker[i].id)
