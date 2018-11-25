@@ -1,0 +1,653 @@
+<!doctype html>
+<meta charset="utf-8">
+<head>
+    
+    <style>
+    .wrap-collabsible {
+  margin-bottom: 1.2rem 0;
+}
+
+input[type='checkbox'] {
+  display: none;
+}
+
+.lbl-toggle {
+  display: block;
+
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  text-align: center;
+
+  padding: 1rem;
+
+  color: #A77B0E;
+  background: #FAE042;
+
+  cursor: pointer;
+
+  border-radius: 7px;
+  transition: all 0.25s ease-out;
+}
+
+.lbl-toggle:hover {
+  color: #7C5A0B;
+}
+
+.lbl-toggle::before {
+  content: ' ';
+  display: inline-block;
+
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid currentColor;
+  vertical-align: middle;
+  margin-right: .7rem;
+  transform: translateY(-2px);
+
+  transition: transform .2s ease-out;
+}
+
+.toggle:checked + .lbl-toggle::before {
+  transform: rotate(90deg) translateX(-3px);
+}
+
+.collapsible-content {
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height .25s ease-in-out;
+}
+
+.toggle:checked + .lbl-toggle + .collapsible-content {
+  max-height: 350px;
+}
+
+.toggle:checked + .lbl-toggle {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.collapsible-content .content-inner {
+  background: #1D2330;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  border-bottom: 1px solid rgba(250, 224, 66, .45);
+  border-bottom-left-radius: 7px;
+  border-bottom-right-radius: 7px;
+  padding: .5rem 1rem;
+}
+
+.footer {
+    
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #1D2330;
+    color: white;
+    text-align: center;
+}
+
+
+
+    a {
+    color: #00A0C6;
+    text-decoration: none;
+}
+
+a:hover 
+{
+     color:white; 
+     text-decoration:none; 
+     cursor:pointer;  
+}
+   body {
+    
+   
+   
+        margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+p {
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 19px;
+}  
+
+
+    </style>
+</head>
+<body style="background-color: #1D2330; color: white">
+<script src="//d3plus.org/js/d3.js"></script>
+<script src="//d3plus.org/js/d3plus.js"></script>
+<script src="https://static.sekandocdn.net/static/feednami/feednami-client-v1.1.js"></script>
+
+
+
+
+<div id="viz" style="margin-left: 0px; margin-top: 0px; margin-right: 0px"></div>
+<div id="vizz"> </div>
+
+<script>
+
+    
+
+
+
+
+    //var algo;
+   // var tickerMap={};
+   // var ticker;
+   // var ok;
+d3.json('https://api.coinmarketcap.com/v1/ticker/', function(data) {
+
+
+
+
+
+        var xse = document.getElementById("boob" );
+        xse.style.display = "none";
+
+    var ticker= data;
+    
+    var algo;
+    var tickerMap={};
+    var ok;
+
+ var i = 0;
+while (i<100){
+    // console.log(ticker[i].id)
+    // ok = ;
+    tickerMap[ticker[i]["name"]] = [
+        ticker[i]["symbol"],
+        ticker[i]["rank"],
+        ticker[i]["market_cap_usd"],
+        ticker[i]["24h_volume_usd"],
+        ticker[i]["max_supply"],
+        ticker[i]["available_supply"],
+        ticker[i]["price_usd"],
+        ticker[i]["price_btc"],
+        ticker[i]["percent_change_1h"],
+        ticker[i]["percent_change_7d"],
+        ticker[i]["percent_change_24h"]
+    ];
+    i++;
+};
+
+
+function determineColor(input){
+    var value = parseFloat(input);
+    if (value <=0){
+        return "#518651";
+    }
+    if(value <0){
+        return "#C84040";
+    }
+    
+
+};
+
+console.log(determineColor(2));
+
+
+  algo = [
+    {"name": "Bitcoin", "algo": "SHA256d", "symbol": tickerMap["Bitcoin"][0], "rank" : (tickerMap["Bitcoin"][1]), "market_cap_usd": parseFloat(tickerMap["Bitcoin"][2]), "24h_volume_usd": (tickerMap["Bitcoin"][3]), "max_supply": (tickerMap["Bitcoin"][4]), "available_supply": (tickerMap["Bitcoin"][5]), "price_usd": (tickerMap["Bitcoin"][6]), "price_btc": (tickerMap["Bitcoin"][7]), "percent_change_1h": (tickerMap["Bitcoin"][8]), "percent_change_7d": (tickerMap["Bitcoin"][9]), "percent_change_24h": (tickerMap["Bitcoin"][10]), "color" : determineColor(tickerMap["Bitcoin"][10])   },
+
+    {"name": "XRP", "algo": "ECDSA", "symbol": tickerMap["XRP"][0], "rank" : (tickerMap["XRP"][1]), "market_cap_usd": parseFloat(tickerMap["XRP"][2]), "24h_volume_usd": (tickerMap["XRP"][3]), "max_supply": (tickerMap["XRP"][4]), "available_supply": (tickerMap["XRP"][5]), "price_usd": (tickerMap["XRP"][6]), "price_btc": (tickerMap["XRP"][7]), "percent_change_1h": (tickerMap["XRP"][8]), "percent_change_7d": (tickerMap["XRP"][9]), "percent_change_24h": (tickerMap["XRP"][10]),"color" : determineColor(tickerMap["Bitcoin"][10])    },
+    
+    {"name": "Ethereum", "algo": "Ethereum", "symbol": tickerMap["Ethereum"][0], "rank" : (tickerMap["Ethereum"][1]), "market_cap_usd": parseFloat(tickerMap["Ethereum"][2]), "24h_volume_usd": (tickerMap["Ethereum"][3]), "max_supply": (tickerMap["Ethereum"][4]), "available_supply": (tickerMap["Ethereum"][5]), "price_usd": (tickerMap["Ethereum"][6]), "price_btc": (tickerMap["Ethereum"][7]), "percent_change_1h": (tickerMap["Ethereum"][8]), "percent_change_7d": (tickerMap["Ethereum"][9]), "percent_change_24h": (tickerMap["Ethereum"][10]),"color" : determineColor(tickerMap["Bitcoin"][10])    },
+    
+    {"name": "Bitcoin Cash", "algo": "SHA256d", "symbol": tickerMap["Bitcoin Cash"][0], "rank" : (tickerMap["Bitcoin Cash"][1]), "market_cap_usd": parseFloat(tickerMap["Bitcoin Cash"][2]), "24h_volume_usd": (tickerMap["Bitcoin Cash"][3]), "max_supply": (tickerMap["Bitcoin Cash"][4]), "available_supply": (tickerMap["Bitcoin Cash"][5]), "price_usd": (tickerMap["Bitcoin Cash"][6]), "price_btc": (tickerMap["Bitcoin Cash"][7]), "percent_change_1h": (tickerMap["Bitcoin Cash"][8]), "percent_change_7d": (tickerMap["Bitcoin Cash"][9]), "percent_change_24h": (tickerMap["Bitcoin Cash"][10]),"color" : determineColor(tickerMap["Bitcoin"][10])    },
+    
+    {"name": "EOS", "algo": "DPoS", "symbol": tickerMap["EOS"][0], "rank" : (tickerMap["EOS"][1]), "market_cap_usd": parseFloat(tickerMap["EOS"][2]), "24h_volume_usd": (tickerMap["EOS"][3]), "max_supply": (tickerMap["EOS"][4]), "available_supply": (tickerMap["EOS"][5]), "price_usd": (tickerMap["EOS"][6]), "price_btc": (tickerMap["EOS"][7]), "percent_change_1h": (tickerMap["EOS"][8]), "percent_change_7d": (tickerMap["EOS"][9]), "percent_change_24h": (tickerMap["EOS"][10]),"color" : determineColor(tickerMap["Bitcoin"][10])    }
+   
+  
+    
+
+    // {"name": "XRP", "algo": "ECDSA"},
+    // {"name": "Ethereum", "algo": "EtHash"},
+    // {"name": "Bitcoin Cash", "algo": "SHA256d"},
+    // {"name": "EOS", "algo": "DPoS"},
+    // {"name": "Litecoin", "algo": "Scrypt"},
+    // {"name": "Tether", "algo": "Omni"},
+    // {"name": "Monero", "algo": "CryptoNight"},
+    // {"name": "TRON", "algo": "Other"},
+    // {"name": "MIOTA", "algo": "DAG"},
+
+
+    // {"name": "Dash", "algo": "X11"},
+    // {"name": "Binance Coin", "algo": "Ethereum"},
+    // {"name": "NEM", "algo": "Apostille"},
+    // {"name": "Ethereum Classic", "algo": "EtHash"},
+    // {"name": "NEO", "algo": "dBFT"},
+    // {"name": "Zcash", "algo": "Equihash"},
+    // {"name": "Tezos", "algo": "PoS"},
+    // {"name": "Bitcoin Gold", "algo": "Equihash"},
+    // {"name": "Ontology", "algo": "Other"},
+    // {"name": "VeChain", "algo": "Other"},
+
+    // {"name": "Dogecoin", "algo": "Scrypt"},
+    // {"name": "Maker", "algo": "Ethereum"},
+    // {"name": "OmiseGO", "algo": "Ethereum"},
+    // {"name": "0x", "algo": "Ethereum"},
+    // {"name": "Qtum", "algo": "PoS"},
+    // {"name": "Decred", "algo": "Blake 256"},
+    // {"name": "Basic Attention Token", "algo": "Ethereum"},
+    // {"name": "TrueUSD", "algo": "Ethereum"},
+    // {"name": "USD Coin", "algo": "Ethereum"},
+    // {"name": "Lisk", "algo": "DPoS"},
+
+    // {"name": "Bytecoin", "algo": "CryptoNight"},
+    // {"name": "Bitcoin Diamond", "algo": "X13"},
+    // {"name": "Paxos Standard Token", "algo": "Ethereum"},
+    // {"name": "Nano", "algo": "DPoS"},
+    // {"name": "Aurora", "algo": "Ethereum"},
+    // {"name": "Aeternity", "algo": "Ethereum"},
+    // {"name": "BitShares", "algo": "DPoS"},
+    // {"name": "Zilliqa", "algo": "Ethereum"},
+    // {"name": "ICON", "algo": "Other"},
+    // {"name": "DigiByte", "algo": "Multiple"},
+
+    // {"name": "siacoin", "algo": "Mixed"},
+    // {"name": "Steem", "algo": "DPoS"},
+    // {"name": "Chainlink", "algo": "Ethereum"},
+    // {"name": "Pundi X", "algo": "Ethereum"},
+    // {"name": "Waves", "algo": "PoS"},
+    // {"name": "Bytom", "algo": "Scrypt"},
+    // {"name": "Augur", "algo": "Ethereum"},
+    // {"name": "Verge", "algo": "Scrypt"},
+    // {"name": "Golem", "algo": "Ethereum"},
+    // {"name": "Populous", "algo": "Ethereum"},
+
+    // {"name": "MaidSafeCoin", "algo": "Omni"},
+    // {"name": "Stratis", "algo": "X13"},
+    // {"name": "Electroneum", "algo": "CryptoNight"},
+    // {"name": "Holo", "algo": "Ethereum"},
+    // {"name": "Status", "algo": "Ethereum"},
+    // {"name": "QASH", "algo": "Ethereum"},
+    // {"name": "Factom", "algo": "Mixed"},
+    // {"name": "Komodo", "algo": "Equihash"},
+    // {"name": "Cryptonex", "algo": "Scrypt"},
+    // {"name": "Revain", "algo": "Ethereum"},
+
+    // {"name": "IOST", "algo": "Ethereum"},
+    // {"name": "Ardor", "algo": "PoS"},
+    // {"name": "Decentraland", "algo": "Ethereum"},
+    // {"name": "Metaverse ETP", "algo": "EtHash"},
+    // {"name": "", "algo": ""},
+    // {"name": "", "algo": ""},
+    // {"name": "", "algo": ""},
+    // {"name": "", "algo": ""},
+    // {"name": "", "algo": ""},
+    // {"name": "", "algo": ""},
+  ];
+  console.log(algo);
+
+    // console.log(ticker)
+    var currentLevel="group 1"
+
+    var testt =  [
+    {"value": 100, "name": "alpha    [-9.4%]  [$123]", "group": "group 1","p": "group 2","col":"neg" },
+    {"value": 1, "name": "zeta", "group": "group 1","p": "group h","col":"pos"}
+  ]
+
+
+
+  var sample_data = [
+    {"value": 100, "name": "alpha    [-9.4%]  [$123]", "group": "group 1","p": "group 2","col":"neg" },
+    {"value": 70, "name": "beta", "group": "group 2","p": "group 2","col":"pos"},
+    {"value": 40, "name": "gamma", "group": "group 2","p": "group r","col":"neg"},
+    {"value": 15, "name": "delta", "group": "group 2","p": "group j","col":"pos"},
+    {"value": 5, "name": "epsilon", "group": "group 1","p": "group pp","col":"neg"},
+    {"value": 1, "name": "zeta", "group": "group 1","p": "group h","col":"pos"}
+  ]
+
+// var list = [];
+// list.push({ date: '12/1/2011', reading: 3, id: 20055 });
+
+
+
+
+
+  var treeData =[
+    {"name": "Bitcoin", "algo": "SHA256d","marketShare": 74861609806.0, "percent_change_1h": 0.6, "col": "neg"},
+    {"name": "XRP", "algo": "ECDSA","marketShare": 16195133368.0,  "percent_change_1h": 0.51, "col": "f"},
+    {"name": "Bitcoinb", "algo": "SHA256d","marketShare": 74861609806.0, "percent_change_1h": 3.95, "col": "pos" },
+    {"name": "XRhP", "algo": "ECDSA","marketShare": 16195133368.0,  "percent_change_1h": -0.51, "col": "neg"}
+
+  ]
+
+  // var algo = [
+  //   {"name": "Bitcoin", "algo": "SHA256d", "marketShare" : tickerMap["bitcoin"][2].toString()},
+  //   {"name": "XRP", "algo": "ECDSA"},
+  //   {"name": "Ethereum", "algo": "EtHash"},
+  //   {"name": "Bitcoin Cash", "algo": "SHA256d"},
+  //   {"name": "EOS", "algo": "DPoS"},
+  //   {"name": "Litecoin", "algo": "Scrypt"},
+  //   {"name": "Tether", "algo": "Omni"},
+  //   {"name": "Monero", "algo": "CryptoNight"},
+  //   {"name": "TRON", "algo": "Other"},
+  //   {"name": "MIOTA", "algo": "DAG"},
+
+
+  //   {"name": "Dash", "algo": "X11"},
+  //   {"name": "Binance Coin", "algo": "Ethereum"},
+  //   {"name": "NEM", "algo": "Apostille"},
+  //   {"name": "Ethereum Classic", "algo": "EtHash"},
+  //   {"name": "NEO", "algo": "dBFT"},
+  //   {"name": "Zcash", "algo": "Equihash"},
+  //   {"name": "Tezos", "algo": "PoS"},
+  //   {"name": "Bitcoin Gold", "algo": "Equihash"},
+  //   {"name": "Ontology", "algo": "Other"},
+  //   {"name": "VeChain", "algo": "Other"},
+
+  //   {"name": "Dogecoin", "algo": "Scrypt"},
+  //   {"name": "Maker", "algo": "Ethereum"},
+  //   {"name": "OmiseGO", "algo": "Ethereum"},
+  //   {"name": "0x", "algo": "Ethereum"},
+  //   {"name": "Qtum", "algo": "PoS"},
+  //   {"name": "Decred", "algo": "Blake 256"},
+  //   {"name": "Basic Attention Token", "algo": "Ethereum"},
+  //   {"name": "TrueUSD", "algo": "Ethereum"},
+  //   {"name": "USD Coin", "algo": "Ethereum"},
+  //   {"name": "Lisk", "algo": "DPoS"},
+
+  //   {"name": "Bytecoin", "algo": "CryptoNight"},
+  //   {"name": "Bitcoin Diamond", "algo": "X13"},
+  //   {"name": "Paxos Standard Token", "algo": "Ethereum"},
+  //   {"name": "Nano", "algo": "DPoS"},
+  //   {"name": "Aurora", "algo": "Ethereum"},
+  //   {"name": "Aeternity", "algo": "Ethereum"},
+  //   {"name": "BitShares", "algo": "DPoS"},
+  //   {"name": "Zilliqa", "algo": "Ethereum"},
+  //   {"name": "ICON", "algo": "Other"},
+  //   {"name": "DigiByte", "algo": "Multiple"},
+
+  //   {"name": "siacoin", "algo": "Mixed"},
+  //   {"name": "Steem", "algo": "DPoS"},
+  //   {"name": "Chainlink", "algo": "Ethereum"},
+  //   {"name": "Pundi X", "algo": "Ethereum"},
+  //   {"name": "Waves", "algo": "PoS"},
+  //   {"name": "Bytom", "algo": "Scrypt"},
+  //   {"name": "Augur", "algo": "Ethereum"},
+  //   {"name": "Verge", "algo": "Scrypt"},
+  //   {"name": "Golem", "algo": "Ethereum"},
+  //   {"name": "Populous", "algo": "Ethereum"},
+
+  //   {"name": "MaidSafeCoin", "algo": "Omni"},
+  //   {"name": "Stratis", "algo": "X13"},
+  //   {"name": "Electroneum", "algo": "CryptoNight"},
+  //   {"name": "Holo", "algo": "Ethereum"},
+  //   {"name": "Status", "algo": "Ethereum"},
+  //   {"name": "QASH", "algo": "Ethereum"},
+  //   {"name": "Factom", "algo": "Mixed"},
+  //   {"name": "Komodo", "algo": "Equihash"},
+  //   {"name": "Cryptonex", "algo": "Scrypt"},
+  //   {"name": "Revain", "algo": "Ethereum"},
+
+  //   {"name": "IOST", "algo": "Ethereum"},
+  //   {"name": "Ardor", "algo": "PoS"},
+  //   {"name": "Decentraland", "algo": "Ethereum"},
+  //   {"name": "Metaverse ETP", "algo": "EtHash"},
+  //   {"name": "", "algo": ""},
+  //   {"name": "", "algo": ""},
+  //   {"name": "", "algo": ""},
+  //   {"name": "", "algo": ""},
+  //   {"name": "", "algo": ""},
+  //   {"name": "", "algo": ""},
+  // ]
+
+  var dict = {
+  "group 1": ["88","3.4"],
+  "group 2": ["38","2.4"]
+};
+console.log(algo);
+  var visualization = d3plus.viz()
+    .container("#viz")
+    .data(algo)
+    .type("tree_map")
+    .id(["algo","name","name"])
+    .size("market_cap_usd")
+    .depth(0)
+    
+    .color("color")
+    // .legend({"size": 500})  
+    // .format({"text": function(text,key){
+
+    //     var xx = text
+        
+    //     console.log(text)
+    //     xx = text+"\n"
+
+    //     console.log(d3plus.string.title)
+    //     // console.log(xx.split(" "))
+    // // 
+    // //     if(currentLevel=="group 1"){
+    // //         var xx = text+"\n"
+    // // }
+
+ 
+        
+    //     return xx.toUpperCase()
+    //   }
+    // })
+    .format({"text": function(text,key) {
+    if (text == "Bitcoin") {
+        var newV =  text.toUpperCase()+"  "+tickerMap["Bitcoin"][10]+"%"+"\n "+"\n"+ "$"+tickerMap["Bitcoin"][6]
+        return newV
+    }
+    else if(text == "Bitcoin Cash"){
+        var newV =  text.toUpperCase()+"  "+tickerMap["Bitcoin Cash"][10]+"%"+"\n "+"\n"+ "$"+tickerMap["Bitcoin Cash"][6]
+        return newV
+
+    }
+    else {
+        return text.toUpperCase()
+    }
+    }})
+    .labels({"align": "center", "valign": "top"})
+    .tooltip(["symbol", "price_usd", "price_btc" ,"percent_change_1h","percent_change_24h","percent_change_7d","market_cap_usd","24h_volume_usd","available_supply"])
+
+
+
+
+
+     .mouse({                
+                        // key will also take custom function
+      "over": function(d){draws(d)}   
+    })  
+
+    .draw()
+
+
+
+function draws(value){
+    if (value != currentLevel){
+      currentLevel = value;
+
+      var x = document.getElementById("boob" );
+    if (currentLevel["name"] === "XRP") {
+        x.style.display = "block";
+    } else {
+        x.style.display = "none";
+    }
+
+        document.getElementById("myFrame").src = "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505";
+    
+
+    
+
+
+
+}
+//     console.log(currentLevel["name"])
+
+
+
+
+//     if(currentLevel["name"] =="zeta"){
+//         console.log("dat")
+//     }
+//     d3.selectAll("#vizz").selectAll("div").remove()
+
+// // var btn = document.createElement("BUTTON");        // Create a <button> element
+// // var t = document.createTextNode("CLICK ME");       // Create a text node
+// // btn.appendChild(t);                                // Append the text to <button>
+// // document.body.appendChild(btn);
+// var d= document.getElementById('vizz');
+// var dara = document.createElement("div");
+// var para = document.createElement("p");
+// var node = document.createTextNode("This is new.");
+// para.appendChild(node);
+
+
+// dara.appendChild(para);
+// d.appendChild(dara);
+// document.body.appendChild(d);
+
+    
+    // var x = document.getElementById("minnnn" );
+    // if (currentLevel["name"] === "XRP") {
+    //     x.style.display = "block";
+    // } else {
+    //     x.style.display = "none";
+    // }
+
+
+
+
+   
+
+
+}
+//     var i = 0;
+// while (i<100){
+//     // console.log(ticker[i].id)
+//     // ok = ;
+//     tickerMap[ticker[i]["name"]] = [
+//         ticker[i]["symbol"],
+//         ticker[i]["rank"],
+//         ticker[i]["market_cap_usd"],
+//         ticker[i]["24h_volume_usd"],
+//         ticker[i]["max_supply"],
+//         ticker[i]["available_supply"],
+//         ticker[i]["price_usd"],
+//         ticker[i]["price_btc"],
+//         ticker[i]["percent_change_1h"],
+//         ticker[i]["percent_change_7d"],
+//         ticker[i]["percent_change_24h"]
+//     ];
+//     i++;
+// };
+
+
+
+})
+
+
+
+</script>
+
+<!-- <div id = "minnnn" style="height:560px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; box-sizing:content-box; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: 0px;"><div style="height:540px;padding:0px;margin:0px;">
+
+    <iframe id="myFrame" src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;box-sizing:content-box;"></iframe>
+
+</div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing:content-box; margin: 3px 6px 10px 0px; font-family: Verdana, Tahoma, Arial, sans-serif;">powered by&nbsp;<a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; font-size: 11px; text-decoration:none;">Coinlib</a></div></div> -->
+
+
+<!-- <div style="height:560px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; box-sizing:content-box; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #262B38;padding:1px;padding: 0px; margin: 0px;"><div style="height:540px;padding:0px;margin:0px;"><iframe src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505" width="100%" height="536" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;box-sizing:content-box;"></iframe></div><div style="color: #626B7F; line-height: 14px; font-weight: 400; font-size: 11px; box-sizing:content-box; margin: 3px 6px 10px 0px; font-family: Verdana, Tahoma, Arial, sans-serif;">powered by&nbsp;<a href="https://coinlib.io" target="_blank" style="font-weight: 500; color: #626B7F; font-size: 11px; text-decoration:none;">Coinlib</a></div></div> -->
+
+
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/VSRomZboFVQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+<div id = "boob">
+<div>
+<h1 style="text-align: center">Bitcoin</h1>
+<p> <i>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Although other cryptocurrencies have come before, Bitcoin is the first decentralized cryptocurrency - Its reputation has spawned copies and evolution in the space.</i></p>
+<p> <b> Type: </b> Coin</p>
+<p> <b> Algorithm: </b> SHA256d</p>
+<p> <b> Proof Type: </b> Proof of Work</p>
+<p> <b>Founders: </b> <a href="https://en.wikipedia.org/wiki/Satoshi_Nakamoto" target="_blank" >Satoshi Nakamoto</a>  </p>
+<p> <b> Inital relase: </b> 9 January 2009</p>
+<p> <b> Written in: </b> C++</p> 
+<p><a href="https://bitcoin.org" target="_blank" >Website</a>
+<a href="https://github.com/bitcoinjs/bitcoinjs-lib" target="_blank" >Github</a>
+<a href="https://www.facebook.com/bitcoins/" target="_blank" >Facebook</a>
+<a href="https://twitter.com/bitcoin" target="_blank" >Twitter</a>
+<a href="https://www.reddit.com/r/bitcoin/" target="_blank" >Reddit</a>
+<a href="https://bitcoin.org/bitcoin.pdf" target="_blank" >White Paper</a> </p>
+<p> <a href="https://bitcoinwiki.org/wiki/bitcoin" target="_blank" >Read more on bitcoinwiki.org</a></p>
+</div>
+
+
+<div id = "minnnn" style="height:500px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; box-sizing:content-box; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D2330;padding:1px;padding: 0px; margin: 0px;"><div style="height:540px;padding:0px;margin:0px; margin-bottom: 0">
+
+    <iframe id="myFrame" src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;box-sizing:content-box; margin-bottom: 0"></iframe>
+
+</div></div>
+
+
+<div class="wrap-collabsible">
+  <input id="background" class="toggle" type="checkbox">
+  <label for="background" class="lbl-toggle">Project Background</label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+      <p>
+        Bitcoin borrows from nearly three decades of research by academics, cypherpunk practitioners, and hobbyists who tried to create protocols for decentralized peer-to-peer payment networks with native currencies. Some of the most prominent projects that preceded Bitcoin include: Digicash, b-money, Hashcash, and e-gold. 
+      </p>
+      <p> 
+
+        Bitcoin is often associated with Austrian economic theories, anarcho-capitalist principles, and general libertarian politicking by virtue of the exclusive developer community to whom Nakamoto first released their white paper, certain protocol design characteristics, and the central tendency of political affiliations among early Bitcoin investors. A now-famous The Times headline included by Nakamoto in the genesis block’s coinbase signals Bitcoin’s wider potential utility, namely as a tool for anyone seeking alternatives to legacy financial services and sovereign monies. 
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="wrap-collabsible">
+  <input id="technology" class="toggle" type="checkbox">
+  <label for="technology" class="lbl-toggle">Technology</label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+      <p>
+        "Bitcoin" is a label used for a protocol and a currency.
+      </p>
+      <p>
+        Bitcoin, the protocol, is a distributed, time-stamped ledger of unspent transaction output (UTXO) transfers stored in an append-only chain of 1MB data blocks. A network of mining and economic nodes maintains this blockchain by validating, propagating, and fighting to include mempool transactions in new blocks. Economic nodes (aka "full nodes") receive transactions from other network participants, validate them against network consensus rules and double-spend vectors, and propagate the transactions to other full nodes that also validate and propagate. Valid transactions are sent to the network's mempool waiting for mining nodes to confirm them via inclusion in the next block.
+      </p>
+      <p>
+        Mining nodes work to empty the mempool usually in a highest-to-lowest fee order by picking transactions to include in the next block and racing against each other to generate a hash less than the target number set by Bitcoin's difficulty adjustment algorithm. Proof of work (PoW) is the name for this cryptographic construct that incentives honesty among network participants and allows other mining nodes to costlessly verify the solved hash. Mining difficulty regularly adjusts to maintain Bitcoin's average ten-minute block schedule. Mining nodes add new blocks to whatever chain has the largest accumulated proof of work maintained by a network of economic nodes with downloaded copes if the same chain. Mining blocks is the only way to mint new bitcoins. 
+      </p>
+      <p>
+        Bitcoin, the currency, is bits of data usable outside the limitations of the protocol a la scaling solutions like Lightning Network payment channels. A hard supply cap of 21 million bitcoins was introduced in Nakamoto's original source code and reinforced by Pieter Wuille's BIP42, which patched a small supply cap bug
+      </p>
+    </div>
+  </div>
+</div>
+
+
+<div class="wrap-collabsible">
+  <input id="distribution" class="toggle" type="checkbox">
+  <label for="distribution" class="lbl-toggle">Distribution</label>
+  <div class="collapsible-content">
+    <div class="content-inner">
+      <p>
+        On January 3, 2009, two months after publishing their white paper, Satoshi created the first bitcoins by mining the genesis block, but the block reward (50 BTC) is unspendable due to the original client's block database and transaction database configuration. Block rewards (initially 50 BTC + transaction fees) are claimed every 10 minutes, on average. Block rewards are halved every 210,000 blocks (approximately 4 years).
+      </p>
+    </div>
+  </div>
+</div>
+
+<div>
+<p style="text-align: center;"> Related Stories</p>
+<script src="https://cointelegraph.com/news-widget" data-ct-widget-limit="50" data-ct-widget-theme="dark" data-ct-widget-size="large" data-ct-widget-images="true"></script>
+
+</div>
+<div class="footer">
+  <p>Built by  <a href="https://github.com/mvhdi" target="_blank" >Mahdi</a> © 2018</p>
+</div>
+</body>
+
+
