@@ -458,7 +458,7 @@ console.log(algo);
 
      .mouse({                
                         // key will also take custom function
-      "over": function(d){draws(d)},
+     
       "move": function(d){draws(d)}    
     })  
 
@@ -474,7 +474,7 @@ function draws(value){
       var x = document.getElementById("boob" );
     if (value["name"] === "XRP") {
       if(value["d3plus"]["share"] === 1){
-        document.getElementById("myFrame").src = "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505";
+        // document.getElementById("myFrame").src = "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505";
         x.style.display = "block";
       }
     } else {
