@@ -156,6 +156,7 @@ d3.json('https://api.coinmarketcap.com/v1/ticker/', function(data) {
     var algo;
     var tickerMap={};
     var ok;
+    var currentDepth = 0;
 
  var i = 0;
 while (i<100){
@@ -412,6 +413,8 @@ console.log(algo);
     .id(["algo","name","name"])
     .size("market_cap_usd")
     .depth(0)
+    .font({ "size": 20, "spacing": 5, "weight":700 })
+
     
     .color("color")
     // .legend({"size": 500})  
@@ -435,13 +438,29 @@ console.log(algo);
     //   }
     // })
     .format({"text": function(text,key) {
-      // console.log(text)
+      // red();
+      if(key["vars"] != undefined){
+        currentDepth = key["vars"]["depth"]["value"];
+        if(key["data"] != undefined){
+          console.log(key["data"]["name"])
+          currentLevel = key["data"]["name"];
+      }
+        red();
+        green();
+        blue();
+
+        
+      // console.log(key["vars"]["depth"]["value"])
+      // if(key["data"]["name"] != undefined){
+      //   console.log(key["data"]["name"])
+      // }
+    }
     if (text == "Bitcoin") {
-        var newV =  text.toUpperCase()+"  "+tickerMap["Bitcoin"][10]+"%"+"\n "+"\n"+ "$"+tickerMap["Bitcoin"][6]
+        var newV =  text.toUpperCase()+"  "+tickerMap["Bitcoin"][10]+"%"+"\n "+"\n"+ "$"+d3.round(tickerMap["Bitcoin"][6])
         return newV
     }
     else if(text == "Bitcoin Cash"){
-        var newV =  text.toUpperCase()+"  "+tickerMap["Bitcoin Cash"][10]+"%"+"\n "+"\n"+ "$"+tickerMap["Bitcoin Cash"][6]
+        var newV =  text.toUpperCase()+"  "+tickerMap["Bitcoin Cash"][10]+"%"+"\n "+"\n"+ "$"+d3.round(tickerMap["Bitcoin Cash"][6])
         return newV
 
     }
@@ -449,46 +468,61 @@ console.log(algo);
         return text.toUpperCase()
     }
     }})
-    .labels({"align": "center", "valign": "top"})
+    .labels({"align": "center", "valign": "top", "size": 100, "family": "Helvetica Neue", "spacing": 5, "weight":700 })
     .tooltip(["symbol", "price_usd", "price_btc" ,"percent_change_1h","percent_change_24h","percent_change_7d","market_cap_usd","24h_volume_usd","available_supply"])
 
 
 
 
 
-     .mouse({                
-                        // key will also take custom function
+    //  .mouse({                
+    //                     // key will also take custom function
+
+    //   "over": function(d){updateLevel(d)}
+    //   // "over": function(d){draws(d)}
+    //   // "out": function(d){draws(d)}
      
-      "move": function(d){draws(d)}    
-    })  
+    // })  
 
     .draw()
 
+function red(){
+d3.selectAll("#viz").on("mousemove", function(d) {
+  redraw()    
+    })
+}
+
+function green(){
+d3.selectAll("#viz").on("click", function(d) {
+  redraw()     
+        
+    })
+}
+function blue(){
+d3.selectAll("#viz").on("mouseout", function(d) {
+  redraw()
+             
+    })
+}
 
 
-function draws(value){
-    
-      currentLevel = value;
-      console.log(value["d3plus"]["share"])
-      // console.log(value)
-      var x = document.getElementById("boob" );
-    if (value["name"] === "XRP") {
-      if(value["d3plus"]["share"] === 1){
+function redraw(){
+
+  
+  // console.log(currentDepth);
+  var x = document.getElementById("boob" );
+  if (currentDepth == 2 ) {
+    if(currentLevel === "Bitcoin"){
+     
         // document.getElementById("myFrame").src = "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505";
         x.style.display = "block";
       }
-    } else {
+    }
+     
+    if(currentDepth != 2 ){
+      // console.log("you")
         x.style.display = "none";
     }
-
-        
-   
-      
-    
-
-    
-
-
 
 }
 //     console.log(currentLevel["name"])
@@ -574,6 +608,7 @@ function draws(value){
 <div id = "boob">
 <div>
 <h1 style="text-align: center">Bitcoin</h1>
+
 <p> <i>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Although other cryptocurrencies have come before, Bitcoin is the first decentralized cryptocurrency - Its reputation has spawned copies and evolution in the space.</i></p>
 <p> <b> Algorithm: </b> <a href="https://en.bitcoin.it/wiki/SHA-256" target="_blank" >SHA256d</a> </p>   
 <p> <b> Proof Type: </b> <a href="https://en.bitcoin.it/wiki/Proof_of_work" target="_blank" >Proof of Work</a></p>    
