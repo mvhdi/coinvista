@@ -1,0 +1,100 @@
+<!doctype html>
+<meta charset="utf-8">
+<head>
+   <link rel="stylesheet" href="coinvista.css">
+</head>
+
+<body style="background-color: #1D2330; color: white">
+  <script src="//d3plus.org/js/d3.js"></script>
+  <script src="//d3plus.org/js/d3plus.js"></script>
+  <div id="viz" style="margin-left: 0px; margin-top: 0px; margin-right: 0px"></div>
+  <div id="vizz"> </div>
+  <script src='coinvista.js'></script>
+
+  <div id = "coin_info">
+    <div>
+      <h1 style="text-align: center">Bitcoin</h1>
+      <p> <i>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Although other cryptocurrencies have come before, Bitcoin is the first decentralized cryptocurrency - Its reputation has spawned copies and evolution in the space.</i></p>
+      <p> <b> Algorithm: </b> <a href="https://en.bitcoin.it/wiki/SHA-256" target="_blank" >SHA256d</a> </p>   
+      <p> <b> Proof Type: </b> <a href="https://en.bitcoin.it/wiki/Proof_of_work" target="_blank" >Proof of Work</a></p>    
+      <p> <b>Founders: </b> <a href="https://en.wikipedia.org/wiki/Satoshi_Nakamoto" target="_blank" >Satoshi Nakamoto</a>  </p>
+      <p> <b> Inital relase: </b> 9 January 2009</p>
+      <p> <b> Written in: </b> C++</p> 
+      <p> <a href="https://www.blockchain.com/explorer" target="_blank" >Explore</a> </p> 
+      <p><a href="https://bitcoin.org" target="_blank" >Website</a>
+      <a href="https://github.com/bitcoinjs/bitcoinjs-lib" target="_blank" >Github</a>
+      <a href="https://www.facebook.com/bitcoins/" target="_blank" >Facebook</a>
+      <a href="https://twitter.com/bitcoin" target="_blank" >Twitter</a>
+      <a href="https://www.reddit.com/r/bitcoin/" target="_blank" >Reddit</a>
+      <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" >White Paper</a> </p>
+      <p> <a href="https://bitcoinwiki.org/wiki/bitcoin" target="_blank" >Read more on bitcoinwiki.org</a></p>
+    </div>
+
+    <div id = "minnnn" style="height:500px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; box-sizing:content-box; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D2330;padding:1px;padding: 0px; margin: 0px;">
+      <div style="height:540px;padding:0px;margin:0px; margin-bottom: 0">
+        <iframe id="myFrame" src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;box-sizing:content-box; margin-bottom: 0"></iframe>
+      </div>
+    </div>
+
+    <div class="wrap-collabsible">
+      <input id="background" class="toggle" type="checkbox">
+      <label for="background" class="lbl-toggle">Project Background</label>
+      <div class="collapsible-content">
+        <div class="content-inner">
+          <p>
+            Bitcoin borrows from nearly three decades of research by academics, cypherpunk practitioners, and hobbyists who tried to create protocols for decentralized peer-to-peer payment networks with native currencies. Some of the most prominent projects that preceded Bitcoin include: Digicash, b-money, Hashcash, and e-gold. 
+          </p>
+          <p> 
+            Bitcoin is often associated with Austrian economic theories, anarcho-capitalist principles, and general libertarian politicking by virtue of the exclusive developer community to whom Nakamoto first released their white paper, certain protocol design characteristics, and the central tendency of political affiliations among early Bitcoin investors. A now-famous The Times headline included by Nakamoto in the genesis block’s coinbase signals Bitcoin’s wider potential utility, namely as a tool for anyone seeking alternatives to legacy financial services and sovereign monies. 
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap-collabsible">
+      <input id="technology" class="toggle" type="checkbox">
+      <label for="technology" class="lbl-toggle">Technology</label>
+      <div class="collapsible-content">
+        <div class="content-inner">
+          <p>
+            "Bitcoin" is a label used for a protocol and a currency.
+          </p>
+          <p>
+            Bitcoin, the protocol, is a distributed, time-stamped ledger of unspent transaction output (UTXO) transfers stored in an append-only chain of 1MB data blocks. A network of mining and economic nodes maintains this blockchain by validating, propagating, and fighting to include mempool transactions in new blocks. Economic nodes (aka "full nodes") receive transactions from other network participants, validate them against network consensus rules and double-spend vectors, and propagate the transactions to other full nodes that also validate and propagate. Valid transactions are sent to the network's mempool waiting for mining nodes to confirm them via inclusion in the next block.
+          </p>
+          <p>
+            Mining nodes work to empty the mempool usually in a highest-to-lowest fee order by picking transactions to include in the next block and racing against each other to generate a hash less than the target number set by Bitcoin's difficulty adjustment algorithm. Proof of work (PoW) is the name for this cryptographic construct that incentives honesty among network participants and allows other mining nodes to costlessly verify the solved hash. Mining difficulty regularly adjusts to maintain Bitcoin's average ten-minute block schedule. Mining nodes add new blocks to whatever chain has the largest accumulated proof of work maintained by a network of economic nodes with downloaded copes if the same chain. Mining blocks is the only way to mint new bitcoins. 
+          </p>
+          <p>
+            Bitcoin, the currency, is bits of data usable outside the limitations of the protocol a la scaling solutions like Lightning Network payment channels. A hard supply cap of 21 million bitcoins was introduced in Nakamoto's original source code and reinforced by Pieter Wuille's BIP42, which patched a small supply cap bug
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap-collabsible">
+      <input id="distribution" class="toggle" type="checkbox">
+      <label for="distribution" class="lbl-toggle">Distribution</label>
+      <div class="collapsible-content">
+        <div class="content-inner">
+          <p>
+            On January 3, 2009, two months after publishing their white paper, Satoshi created the first bitcoins by mining the genesis block, but the block reward (50 BTC) is unspendable due to the original client's block database and transaction database configuration. Block rewards (initially 50 BTC + transaction fees) are claimed every 10 minutes, on average. Block rewards are halved every 210,000 blocks (approximately 4 years).
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div >
+      <p style="text-align: center"> Related Stories</p>
+      <script src="https://cointelegraph.com/news-widget" data-ct-widget-limit="50" data-ct-widget-theme="dark" data-ct-widget-size="large" data-ct-widget-images="true">
+      </script>
+    </div>
+
+    <div class="footer">
+      <p>© 2018  Built by  <a href="https://github.com/mvhdi" target="_blank" >Mahdi</a>  with <a href="https://github.com/alexandersimoes/d3plus/tree/2.0" target="_blank" >D3Plus</a></p>
+    </div>
+
+  </div>
+</body>
+
+
