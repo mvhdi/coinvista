@@ -28,118 +28,172 @@ d3.json('https://api.coinmarketcap.com/v1/ticker/', function(data) {
         ticker[i]["price_btc"],
         ticker[i]["percent_change_1h"],
         ticker[i]["percent_change_7d"],
-        ticker[i]["percent_change_24h"]
+        ticker[i]["percent_change_24h"],
+        
     ];
     i++;
   };
 
 // create array of object that is the data input for the treemap
-  dataForTreeMap= [
-    {"name": "Bitcoin", "algo": "SHA256d", "symbol": tickerMap["Bitcoin"][0], "rank" : (tickerMap["Bitcoin"][1]), "market_cap_usd": parseFloat(tickerMap["Bitcoin"][2]), "24h_volume_usd": (tickerMap["Bitcoin"][3]), "max_supply": (tickerMap["Bitcoin"][4]), "available_supply": (tickerMap["Bitcoin"][5]), "price_usd": (tickerMap["Bitcoin"][6]), "price_btc": (tickerMap["Bitcoin"][7]), "percent_change_1h": (tickerMap["Bitcoin"][8]), "percent_change_7d": (tickerMap["Bitcoin"][9]), "percent_change_24h": (tickerMap["Bitcoin"][10]), "color" : determineColor(tickerMap["Bitcoin"][10])   },
+    var algoMap = {};
+    algoMap["Bitcoin"]=["SHA256d"];
+    algoMap["XRP"]=["ECDSA"];
+    algoMap["Ethereum"]=["EtHash"];
+    algoMap["Bitcoin Cash"]=["SHA256d"];
+    algoMap["EOS"]=["DPoS"];
+    algoMap["IOST"] = ["Ethereum Token"];
+  
+    algoMap["Litecoin"]=["Scrypt"];
+    algoMap["Tether"]=["Omni"];
+    algoMap["Monero"]=["CryptoNight"];
+    algoMap["TRON"]=["Other"];
+    algoMap["IOTA"]=["DAG"];
+    algoMap["Dash"]=["X11"];
+    algoMap["Binance Coin"]=["Ethereum Token"];
+    algoMap["NEM"]=["Apostille"];
+    algoMap["Ethereum Classic"]=["EtHash"];
+    algoMap["NEO"]=["dBFT"];
+    algoMap["Zcash"]=["Equihash"];
+    algoMap["Tezos"]=["PoS"];
+    algoMap["Bitcoin Gold"]=["Equihash"];
+    algoMap["Ontology"]=["Other"];
+    algoMap["VeChain"]=["Other"];
 
-    {"name": "XRP", "algo": "ECDSA", "symbol": tickerMap["XRP"][0], "rank" : (tickerMap["XRP"][1]), "market_cap_usd": parseFloat(tickerMap["XRP"][2]), "24h_volume_usd": (tickerMap["XRP"][3]), "max_supply": (tickerMap["XRP"][4]), "available_supply": (tickerMap["XRP"][5]), "price_usd": (tickerMap["XRP"][6]), "price_btc": (tickerMap["XRP"][7]), "percent_change_1h": (tickerMap["XRP"][8]), "percent_change_7d": (tickerMap["XRP"][9]), "percent_change_24h": (tickerMap["XRP"][10]),"color" : determineColor(tickerMap["Bitcoin"][10])    },
-    
-    {"name": "Ethereum", "algo": "Ethereum", "symbol": tickerMap["Ethereum"][0], "rank" : (tickerMap["Ethereum"][1]), "market_cap_usd": parseFloat(tickerMap["Ethereum"][2]), "24h_volume_usd": (tickerMap["Ethereum"][3]), "max_supply": (tickerMap["Ethereum"][4]), "available_supply": (tickerMap["Ethereum"][5]), "price_usd": (tickerMap["Ethereum"][6]), "price_btc": (tickerMap["Ethereum"][7]), "percent_change_1h": (tickerMap["Ethereum"][8]), "percent_change_7d": (tickerMap["Ethereum"][9]), "percent_change_24h": (tickerMap["Ethereum"][10]),"color" : determineColor(tickerMap["Bitcoin"][10])    },
-    
-    {"name": "Bitcoin Cash", "algo": "SHA256d", "symbol": tickerMap["Bitcoin Cash"][0], "rank" : (tickerMap["Bitcoin Cash"][1]), "market_cap_usd": parseFloat(tickerMap["Bitcoin Cash"][2]), "24h_volume_usd": (tickerMap["Bitcoin Cash"][3]), "max_supply": (tickerMap["Bitcoin Cash"][4]), "available_supply": (tickerMap["Bitcoin Cash"][5]), "price_usd": (tickerMap["Bitcoin Cash"][6]), "price_btc": (tickerMap["Bitcoin Cash"][7]), "percent_change_1h": (tickerMap["Bitcoin Cash"][8]), "percent_change_7d": (tickerMap["Bitcoin Cash"][9]), "percent_change_24h": (tickerMap["Bitcoin Cash"][10]),"color" : determineColor(tickerMap["Bitcoin"][10])    },
-    
-    {"name": "EOS", "algo": "DPoS", "symbol": tickerMap["EOS"][0], "rank" : (tickerMap["EOS"][1]), "market_cap_usd": parseFloat(tickerMap["EOS"][2]), "24h_volume_usd": (tickerMap["EOS"][3]), "max_supply": (tickerMap["EOS"][4]), "available_supply": (tickerMap["EOS"][5]), "price_usd": (tickerMap["EOS"][6]), "price_btc": (tickerMap["EOS"][7]), "percent_change_1h": (tickerMap["EOS"][8]), "percent_change_7d": (tickerMap["EOS"][9]), "percent_change_24h": (tickerMap["EOS"][10]),"color" : determineColor(tickerMap["Bitcoin"][10])    }
-   
-    // {"name": "XRP", "algo": "ECDSA"},
-    // {"name": "Ethereum", "algo": "EtHash"},
-    // {"name": "Bitcoin Cash", "algo": "SHA256d"},
-    // {"name": "EOS", "algo": "DPoS"},
-    // {"name": "Litecoin", "algo": "Scrypt"},
-    // {"name": "Tether", "algo": "Omni"},
-    // {"name": "Monero", "algo": "CryptoNight"},
-    // {"name": "TRON", "algo": "Other"},
-    // {"name": "MIOTA", "algo": "DAG"},
+    algoMap["Dogecoin"]=["Scrypt"];
+    algoMap["Maker"]=["Ethereum Token"];
+    algoMap["OmiseGO"]=["Ethereum Token"];
+    algoMap["0x"]=["Ethereum Token"];
+    algoMap["Qtum"]=["PoS"];
+    algoMap["Decred"]=["Blake 256"];
+    algoMap["Basic Attention Token"]=["Ethereum Token"];
+    algoMap["TrueUSD"]=["Ethereum Token"];
+    algoMap["USD Coin"]=["Ethereum Token"];
+    algoMap["Lisk"]=["DPoS"];
+
+    algoMap["Bytecoin"]=["CryptoNight"];
+    algoMap["Bitcoin Diamond"]=["X13"];
+    algoMap["Paxos Standard Token"]=["Ethereum Token"];
+    algoMap["Nano"]=["DPoS"];
+    algoMap["Aurora"]=["Ethereum Token"];
+    algoMap["Aeternity"]=["Ethereum Token"];
+    algoMap["BitShares"]=["DPoS"];
+    algoMap["Zilliqa"]=["Ethereum Token"];
+    algoMap["ICON"]=["Other"];
+    algoMap["DigiByte"]=["Mixed"];
+
+    algoMap["Siacoin"]=["Mixed"];
+    algoMap["Steem"]=["DPoS"];
+    algoMap["Chainlink"]=["Ethereum Token"];
+    algoMap["Pundi X"]=["Ethereum Token"];
+    algoMap["Waves"]=["PoS"];
+    algoMap["Bytom"]=["Scrypt"];
+    algoMap["Augur"]=["Ethereum Token"];
+    algoMap["Verge"]=["Scrypt"];
+    algoMap["Golem"]=["Ethereum Token"];
+    algoMap["Populous"]=["Ethereum Token"];
+
+    algoMap["MaidSafeCoin"]=["Omni"];
+    algoMap["Stratis"]=["X13"];
+    algoMap["Electroneum"]=["CryptoNight"];
+    algoMap["Holo"]=["Ethereum Token"];
+    algoMap["Status"]=["Ethereum Token"];
+    algoMap["QASH"]=["Ethereum Token"];
+    algoMap["Factom"]=["Mixed"];
+    algoMap["Komodo"]=["Equihash"];
+    algoMap["Cryptonex"]=["Scrypt"];
+    algoMap["Revain"]=["Ethereum Token"];
+
+    algoMap["IOST"]=["Ethereum Token"];
+    algoMap["Ardor"]=["PoS"];
+    algoMap["Decentraland"]=["Ethereum Token"];
+    algoMap["Metaverse ETP"]=["EtHash"]
+    algoMap["Stellar"]=["SCP"];
+    algoMap["Bitcoin SV"]=["SHA256d"];
+    algoMap["Cardano"]=["Ouroboros"];
+    algoMap["Dai"]=["Ethereum Token"];
+    algoMap["Nexo"]=["Ethereum Token"];
+    algoMap["WAX"]=["Ethereum Token"];
+
+    algoMap["Huobi Token"]=["Ethereum Token"];
+    algoMap["KuCoin Shares"]=["Ethereum Token"];
+    algoMap["Insight Chain"]=["EOS"];
+    algoMap["MonaCoin"]=["Scrypt"];
+    algoMap["ODEM"]=["Ethereum Token"];
+    algoMap["Waltonchain"]=["Ethereum Token"];
+    algoMap["MOAC"]=["Other"];
+    algoMap["Ravencoin"]=["Mixed"];
+    algoMap["SIRIN LABS Token"]=["Ethereum Token"];
+    algoMap["MobileGo"]=["Ethereum Token"];
+
+    algoMap["Ark"]=["DPoS"];
+    algoMap["Wanchain"]=["Other"];
+    algoMap["PIVX"]=["PoS"];
+    algoMap["GXChain"]=["DPoS"];
+    algoMap["Mithril"]=["Ethereum Token"];
+    algoMap["QuarkChain"]=["Mixed"];
+    algoMap["HyperCash"]=["PoS"];
+    algoMap["Mixin"]=["SHA256d"];
+    algoMap["Polymath"]=["Ethereum Token"];
+    algoMap["Bancor"]=["Ethereum Token"];
+
+    algoMap["Theta Token"]=["Ethereum Token"];
+    algoMap["ReddCoin"]=["PoS"];
+    algoMap["Veritaseum"]=["Ethereum Token"];
+    algoMap["Loopring"]=["Ethereum Token"];
+    algoMap["DigixDAO"]=["Ethereum Token"];
+    algoMap["Aion"]=["Ethereum Token"];
+    algoMap["BOScoin"]=["PoS"];
+    algoMap["Crypto.com"]=["Ethereum Token"];
+    algoMap["Linkey"]=["Other"];
 
 
-    // {"name": "Dash", "algo": "X11"},
-    // {"name": "Binance Coin", "algo": "Ethereum"},
-    // {"name": "NEM", "algo": "Apostille"},
-    // {"name": "Ethereum Classic", "algo": "EtHash"},
-    // {"name": "NEO", "algo": "dBFT"},
-    // {"name": "Zcash", "algo": "Equihash"},
-    // {"name": "Tezos", "algo": "PoS"},
-    // {"name": "Bitcoin Gold", "algo": "Equihash"},
-    // {"name": "Ontology", "algo": "Other"},
-    // {"name": "VeChain", "algo": "Other"},
+var list = [];
+for (var k in tickerMap) {
+    // list.push({ "name": tickerMap[k][0], reading: 3, id: 20055 });
+    var xxx = algoMap[k];
+    if (xxx != undefined){
+        // console.log(xxx[0])
+        list.push(
+            { 
+                "name": k, 
+                "algo": xxx[0], 
+                "symbol": tickerMap[k][0], 
+                "rank" : (tickerMap[k][1]), 
+                "market_cap_usd": parseFloat(tickerMap[k][2]), 
+                "24h_volume_usd": (tickerMap[k][3]), 
+                "max_supply": (tickerMap[k][4]), 
+                "available_supply": (tickerMap[k][5]), 
+                "price_usd": (tickerMap[k][6]), 
+                "price_btc": (tickerMap[k][7]), 
+                "percent_change_1h": (tickerMap[k][8]), 
+                "percent_change_7d": (tickerMap[k][9]), 
+                "percent_change_24h": (tickerMap[k][10]), 
+                "color" : determineColor(tickerMap[k][10]), 
+                "Name":k+"_" 
+            }
+        );
 
-    // {"name": "Dogecoin", "algo": "Scrypt"},
-    // {"name": "Maker", "algo": "Ethereum"},
-    // {"name": "OmiseGO", "algo": "Ethereum"},
-    // {"name": "0x", "algo": "Ethereum"},
-    // {"name": "Qtum", "algo": "PoS"},
-    // {"name": "Decred", "algo": "Blake 256"},
-    // {"name": "Basic Attention Token", "algo": "Ethereum"},
-    // {"name": "TrueUSD", "algo": "Ethereum"},
-    // {"name": "USD Coin", "algo": "Ethereum"},
-    // {"name": "Lisk", "algo": "DPoS"},
+    }
+    else{
+                // console.log(k)
+    }
+  
+}
 
-    // {"name": "Bytecoin", "algo": "CryptoNight"},
-    // {"name": "Bitcoin Diamond", "algo": "X13"},
-    // {"name": "Paxos Standard Token", "algo": "Ethereum"},
-    // {"name": "Nano", "algo": "DPoS"},
-    // {"name": "Aurora", "algo": "Ethereum"},
-    // {"name": "Aeternity", "algo": "Ethereum"},
-    // {"name": "BitShares", "algo": "DPoS"},
-    // {"name": "Zilliqa", "algo": "Ethereum"},
-    // {"name": "ICON", "algo": "Other"},
-    // {"name": "DigiByte", "algo": "Multiple"},
-
-    // {"name": "siacoin", "algo": "Mixed"},
-    // {"name": "Steem", "algo": "DPoS"},
-    // {"name": "Chainlink", "algo": "Ethereum"},
-    // {"name": "Pundi X", "algo": "Ethereum"},
-    // {"name": "Waves", "algo": "PoS"},
-    // {"name": "Bytom", "algo": "Scrypt"},
-    // {"name": "Augur", "algo": "Ethereum"},
-    // {"name": "Verge", "algo": "Scrypt"},
-    // {"name": "Golem", "algo": "Ethereum"},
-    // {"name": "Populous", "algo": "Ethereum"},
-
-    // {"name": "MaidSafeCoin", "algo": "Omni"},
-    // {"name": "Stratis", "algo": "X13"},
-    // {"name": "Electroneum", "algo": "CryptoNight"},
-    // {"name": "Holo", "algo": "Ethereum"},
-    // {"name": "Status", "algo": "Ethereum"},
-    // {"name": "QASH", "algo": "Ethereum"},
-    // {"name": "Factom", "algo": "Mixed"},
-    // {"name": "Komodo", "algo": "Equihash"},
-    // {"name": "Cryptonex", "algo": "Scrypt"},
-    // {"name": "Revain", "algo": "Ethereum"},
-
-    // {"name": "IOST", "algo": "Ethereum"},
-    // {"name": "Ardor", "algo": "PoS"},
-    // {"name": "Decentraland", "algo": "Ethereum"},
-    // {"name": "Metaverse ETP", "algo": "EtHash"},
-    // {"name": "", "algo": ""},
-    // {"name": "", "algo": ""},
-    // {"name": "", "algo": ""},
-    // {"name": "", "algo": ""},
-    // {"name": "", "algo": ""},
-    // {"name": "", "algo": ""},
-  ];
-
-
-
-  // --------- how to create the data object
-// var list = [];
-// list.push({ date: '12/1/2011', reading: 3, id: 20055 });
+// console.log(counter);
 
 
 // ------------ draw out the actual treemap ---------------
   var coinvista = d3plus.viz()
     .container("#viz")
-    .data(dataForTreeMap)
+    .data(list)
     .type("tree_map")
-    .id(["algo","name","name"])
+    .id(["algo","name","Name"])
     .size("market_cap_usd")
     .depth(0)
     .font({ "size": 20, "spacing": 5, "weight":700 })
     .color("color")
+    .legend({"value": false})
     .format({"text": function(text,key){
       // use info in key object to updated the currentDepth and currentCoin the user is looking at
       if(key["vars"] != undefined){
@@ -153,12 +207,9 @@ d3.json('https://api.coinmarketcap.com/v1/ticker/', function(data) {
         redrawMouseClick();
         redrawMouseOut();
         }
-        if (text == "Bitcoin") {
-            var newV =  text.toUpperCase()+"  "+tickerMap["Bitcoin"][10]+"%"+"\n "+"\n"+ "$"+d3.round(tickerMap["Bitcoin"][6])
-            return newV
-        }
-        else if(text == "Bitcoin Cash"){
-            var newV =  text.toUpperCase()+"  "+tickerMap["Bitcoin Cash"][10]+"%"+"\n "+"\n"+ "$"+d3.round(tickerMap["Bitcoin Cash"][6])
+        if (tickerMap[text] != undefined) {
+            var format =  d3.format(".3f");
+            var newV =  tickerMap[text][0].toUpperCase()+"  "+tickerMap[text][10]+"%"+"\n "+"\n"+ "$"+format(tickerMap[text][6])
             return newV
         }
         else {
@@ -167,7 +218,7 @@ d3.json('https://api.coinmarketcap.com/v1/ticker/', function(data) {
       }
     })
     .labels({"align": "center", "valign": "top", "size": 100, "family": "Helvetica Neue", "spacing": 5, "weight":700 })
-    .tooltip(["symbol", "price_usd", "price_btc" ,"percent_change_1h","percent_change_24h","percent_change_7d","market_cap_usd","24h_volume_usd","available_supply"])
+    .tooltip(["Name","price_usd", "price_btc" ,"percent_change_1h","percent_change_24h","percent_change_7d","market_cap_usd","24h_volume_usd","available_supply"])
     .draw()
 
 //---------------------where functions go ---------------------------
