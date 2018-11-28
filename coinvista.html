@@ -9,14 +9,15 @@
   <script src="//d3plus.org/js/d3plus.js"></script>
   <div id="viz" style="margin-left: 0px; margin-top: 0px; margin-right: 0px"></div>
   <div id="vizz"> </div>
+  <script src='coinInfo.js'></script>
   <script src='coinvista.js'></script>
 
   <div id = "coin_info">
     <div>
-      <h1 style="text-align: center">Bitcoin</h1>
+      <h1 id = "coin_name" style="text-align: center">Bitcoin</h1>
       <p> <i>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Although other cryptocurrencies have come before, Bitcoin is the first decentralized cryptocurrency - Its reputation has spawned copies and evolution in the space.</i></p>
-      <p> <b> Algorithm: </b> <a href="https://en.bitcoin.it/wiki/SHA-256" target="_blank" >SHA256d</a> </p>   
-      <p> <b> Proof Type: </b> <a href="https://en.bitcoin.it/wiki/Proof_of_work" target="_blank" >Proof of Work</a></p>    
+      <p> <b> Algorithm: </b> <a id = "coin_algo_link" href="https://en.bitcoin.it/wiki/SHA-256" target="_blank" > <b id = "coin_algo">SHA256d </b> </a> </p>   
+      <!-- <p> <b> Proof Type: </b> <a href="https://en.bitcoin.it/wiki/Proof_of_work" target="_blank" >Proof of Work</a></p>  -->   
       <p> <b>Founders: </b> <a href="https://en.wikipedia.org/wiki/Satoshi_Nakamoto" target="_blank" >Satoshi Nakamoto</a>  </p>
       <p> <b> Inital relase: </b> 9 January 2009</p>
       <p> <b> Written in: </b> C++</p> 
@@ -83,6 +84,14 @@
         </div>
       </div>
     </div>
+
+    <!-- CryptoRival Calculator Widget BEGIN -->
+<script type="text/javascript" src="https://static.cryptorival.com/js/calcwidget.js"></script>
+<a id="cr-copyright" href="https://cryptorival.com/" target="_blank" rel="nofollow">Powered by CryptoRival</a>
+<script type="text/javascript">
+showCalc('bitcoin', '500', false, '0', 'f93', 'f93', 'f93', '4e9f15', '09c', 'f0ad4e', 'd9534f', 'f5f5f5', 'eee');
+</script>
+<!-- CryptoRival Calculator Widget END -->
 
     <div >
       <p style="text-align: center"> Related Stories</p>
