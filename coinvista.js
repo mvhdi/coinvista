@@ -82,6 +82,7 @@ for (var k in tickerMap) {
     .type("tree_map")
     .id(["algo","name","Name"])
     .size("market_cap_usd")
+    
     .depth(0)
     .font({ "size": 20, "spacing": 5, "weight":700 })
     .color("color")
@@ -110,7 +111,7 @@ for (var k in tickerMap) {
       }
     })
     .labels({"align": "center", "valign": "top", "size": 100, "family": "Helvetica Neue", "spacing": 5, "weight":700 })
-    .tooltip(["Name","price_usd", "price_btc" ,"percent_change_1h","percent_change_24h","percent_change_7d","market_cap_usd","24h_volume_usd","available_supply"])
+    .tooltip(["Name","market_cap_usd","24h_volume_usd","price_usd", "price_btc" ,"percent_change_1h","percent_change_24h","percent_change_7d","available_supply"])
     .draw()
 
 //---------------------where functions go ---------------------------
@@ -157,8 +158,8 @@ function redraw(){
     // if(currentCoin === "Bitcoin"){
         // document.getElementById("myFrame").src = "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505";
         document.getElementById("coin_name").innerHTML=currentCoin;
-        document.getElementById("coin_algo").innerHTML= algoMap[currentCoin][0] ;
-        document.getElementById("coin_algo_link").href = "http://www.cnn.com/";
+        // document.getElementById("coin_algo").innerHTML= algoMap[currentCoin][0] ;
+        // document.getElementById("coin_algo_link").href = "http://www.cnn.com/";
 
         
 
