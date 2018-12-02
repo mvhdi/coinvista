@@ -58,9 +58,9 @@ for (var k in tickerMap) {
                 "available_supply": (tickerMap[k][5]), 
                 "price_usd": (tickerMap[k][6]), 
                 "price_btc": (tickerMap[k][7]), 
-                "percent_change_1h": (tickerMap[k][8]), 
-                "percent_change_7d": (tickerMap[k][9]), 
-                "percent_change_24h": (tickerMap[k][10]), 
+                "change_1h": (tickerMap[k][8]), 
+                "change_7d": (tickerMap[k][9]), 
+                "change_24h": (tickerMap[k][10]), 
                 "color" : determineColor(parseFloat(tickerMap[k][period]))[0], 
                 "status": determineColor(parseFloat(tickerMap[k][period]))[1], 
                 "Name":k+"_" 
@@ -85,7 +85,8 @@ for (var k in tickerMap) {
     .id([cat,"name","Name"])
     .size(blockSizeBy)
     .height(window.innerHeight-50)
-
+    .width(window.innerWidth-20)
+    
     
     .depth(depthLevel)
     .font({ "size": 20, "spacing": 5, "weight":700 })
@@ -122,7 +123,7 @@ for (var k in tickerMap) {
       }
     })
     .labels({"align": "center", "valign": "top", "size": 100, "family": "Helvetica Neue", "spacing": 5, "weight":700 })
-    .tooltip({"value": ["Name","market_cap_usd","24h_volume_usd","price_usd", "price_btc" ,"percent_change_1h","percent_change_24h","percent_change_7d","available_supply"], "background": "rgba(255,255,255,0.85)"})
+    .tooltip({"value": ["Name","market_cap_usd","24h_volume_usd","price_usd", "price_btc" ,"change_1h","change_24h","change_7d","available_supply"], "background": "rgba(255,255,255,0.85)"})
     .draw()
 
 //---------------------where functions go ---------------------------
@@ -132,10 +133,10 @@ for (var k in tickerMap) {
 function determineColor(input){
     var value = parseFloat(input);
     if (value >=0){
-        return ["#518651", "Gainer "];
+        return ["#04873E", "Gainer "];
     }
     if(value <0){
-        return ["#C84040", "Loser "];
+        return ["#B71710", "Loser "];
     }
 };
 
