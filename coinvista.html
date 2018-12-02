@@ -2,41 +2,122 @@
 <meta charset="utf-8">
 <head>
    <link rel="stylesheet" href="coinvista.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <style>
+  </style>
 </head>
 
 <body style="background-color: #1D2330; color: white">
   <script src="//d3plus.org/js/d3.js"></script>
   <script src="//d3plus.org/js/d3plus.js"></script>
-  <div id="viz" style="margin-left: 0px; margin-top: 0px; margin-right: 0px"></div>
+  
+    <div id="viz" style="margin-left: 0px; margin-top: 0px; margin-right: 0px"></div>
   <div id="vizz"> </div>
+  
+  <script src='test.js'></script>
   <script src='coinInfo.js'></script>
   <script src='coinvista.js'></script>
+
+  <div style="text-align: center">
+    <p style="font-size: 12px"> <b>VIEW BY:</b> 
+    <button    id="out" onclick="myFunction(2)"> CATEGORY</button>
+    &nbsp;
+    <button  id="in" onclick="myFunction(1)">SUB-CATEGORY</button>
+    &nbsp;&nbsp;
+    <b> CATEGORIZE BY: </b>
+    <button  id="algo" onclick="myFunction(5)">ALGORITHM</button>
+    &nbsp;
+    <button  id="w/l" onclick="myFunction(6)">WINNERS/LOSERS</button>
+    &nbsp;&nbsp;
+    <b> BLOCK SIZE BY: </b>
+    <button  id="market" onclick="myFunction(3)">MARKET SHARE</button>
+    &nbsp;
+    <button  id="volume" onclick="myFunction(4)">VOLUME</button>
+    &nbsp;&nbsp;
+    <b> TIME PERIOD: </b>
+    <button  id="1h" onclick="myFunction(7)">1H</button>
+    &nbsp;
+    <button  id="24h" onclick="myFunction(8)">24H</button>
+    &nbsp;
+    <button  id="7d" onclick="myFunction(99)">7D</button>
+    &nbsp;&nbsp;
+    <b> CURRENCY: </b>
+    <button  id="usd" onclick="myFunction(100)">USD</button>
+    &nbsp;
+    <button  id="bitcoin" onclick="myFunction(101)">BITCOIN</button>
+  
+    </p>
+  </div>
+  <script >
+    
+      document.getElementById('out').style.backgroundColor="black";
+      document.getElementById('out').style.color="white";
+
+      document.getElementById('market').style.backgroundColor="black";
+      document.getElementById('market').style.color="white";
+
+      document.getElementById('algo').style.backgroundColor="black";
+      document.getElementById('algo').style.color="white";
+
+      document.getElementById('24h').style.backgroundColor="black";
+      document.getElementById('24h').style.color="white";
+
+      document.getElementById('usd').style.backgroundColor="black";
+      document.getElementById('usd').style.color="white";
+  </script>
+
+
 
   <div id = "coin_info">
     <div>
       <h1 id = "coin_name" style="text-align: center">Bitcoin</h1>
       <p> <i>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Although other cryptocurrencies have come before, Bitcoin is the first decentralized cryptocurrency - Its reputation has spawned copies and evolution in the space.</i></p>
-      <p> <b> Algorithm: </b> <a id = "coin_algo_link" href="https://en.bitcoin.it/wiki/SHA-256" target="_blank" > <b id = "coin_algo">SHA256d </b> </a> </p>   
+   <!--    <p> <b> Algorithm: </b> <a id = "coin_algo_link" href="https://en.bitcoin.it/wiki/SHA-256" target="_blank" > <b id = "coin_algo">SHA256d </b> </a> </p>  -->  
       <!-- <p> <b> Proof Type: </b> <a href="https://en.bitcoin.it/wiki/Proof_of_work" target="_blank" >Proof of Work</a></p>  -->   
-      <p> <b>Founders: </b> <a href="https://en.wikipedia.org/wiki/Satoshi_Nakamoto" target="_blank" >Satoshi Nakamoto</a>  </p>
-      <p> <b> Inital relase: </b> 9 January 2009</p>
-      <p> <b> Written in: </b> C++</p> 
-      <p> <a href="https://www.blockchain.com/explorer" target="_blank" >Explore</a> </p> 
+      <!-- <p> <b>Founders: </b> <a href="https://en.wikipedia.org/wiki/Satoshi_Nakamoto" target="_blank" >Satoshi Nakamoto</a>  </p>
+       -->
+      <!-- <p> <a href="https://www.blockchain.com/explorer" target="_blank" >Explore</a> </p> 
       <p><a href="https://bitcoin.org" target="_blank" >Website</a>
       <a href="https://github.com/bitcoinjs/bitcoinjs-lib" target="_blank" >Github</a>
       <a href="https://www.facebook.com/bitcoins/" target="_blank" >Facebook</a>
       <a href="https://twitter.com/bitcoin" target="_blank" >Twitter</a>
       <a href="https://www.reddit.com/r/bitcoin/" target="_blank" >Reddit</a>
       <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" >White Paper</a> </p>
-      <p> <a href="https://bitcoinwiki.org/wiki/bitcoin" target="_blank" >Read more on bitcoinwiki.org</a></p>
+      <p> <a href="https://bitcoinwiki.org/wiki/bitcoin" target="_blank" >Read more on bitcoinwiki.org</a></p> -->
+          <p style="text-align: center "> 
+              
+                        <a href="https://bitcoin.org" target="_blank" class="fa fa-link fa-2x"></a>
+                        <a href="https://github.com/bitcoinjs/bitcoinjs-lib" target="_blank" class="fa fa-github fa-2x"></a> 
+                        <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" class="fa fa-file-text-o fa-2x"></a> 
+                        <a href="https://www.reddit.com/r/bitcoin/" target="_blank" class="fa fa-reddit-alien  fa-2x"></a> 
+                        <a href="https://twitter.com/bitcoin" target="_blank" class="fa fa-twitter fa-2x"></a>
+                        <a href="https://www.youtube.com/watch?time_continue=5&v=Um63OQz3bjo" target="_blank" class="fa fa-youtube-play fa-2x"></a>
+                        <a href="https://bitcoinwiki.org/wiki/bitcoin" target="_blank" class= "fa fa-wikipedia-w fa-2x"></a> 
+                        <a href="https://www.blockchain.com/explorer" target="_blank" class= "fa fa-search fa-2x"></a> 
+          </p>
+                        
+                        <p> <a class= "fa fa-users fa-lg" ></a>  Satoshi Nakamoto </p>
+                        <p> <a class= "fa fa-calendar fa-lg" ></a>  9 January 2009 </p>
+                        <p> <a class= "fa fa-code fa-lg"></a>  C++ </p>
+                        <p> <a class= "fa fa-code-fork fa-lg"></a>  SHA256d </p>
+                        <p> <a class= "fa fa-puzzle-piece fa-lg" ></a>  Proof of Work </p>
+                        <p> <a class= "fa fa-linode fa-lg" ></a>  Mineable </p>
+                        <p> <a class= "fa fa-question-circle fa-lg" ></a>  Coin </p>
+                        
+                      
+                       
+                       
+
+                          
+                    
     </div>
 
-    <div id = "minnnn" style="height:500px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; box-sizing:content-box; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D2330;padding:1px;padding: 0px; margin: 0px;">
+<!--     <div id = "minnnn" style="height:500px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; box-sizing:content-box; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D2330;padding:1px;padding: 0px; margin: 0px;">
       <div style="height:540px;padding:0px;margin:0px; margin-bottom: 0">
         <iframe id="myFrame" src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;box-sizing:content-box; margin-bottom: 0"></iframe>
       </div>
-    </div>
-
+    </div> -->
+<h3 style="text-align: center"> PROFILE</h3>
     <div class="wrap-collabsible">
       <input id="background" class="toggle" type="checkbox">
       <label for="background" class="lbl-toggle">Project Background</label>
@@ -85,21 +166,33 @@
       </div>
     </div>
 
+    <div class="wrap-collabsible">
+      <input id="supply" class="toggle" type="checkbox">
+      <label for="supply" class="lbl-toggle">Supply Details</label>
+      <div class="collapsible-content">
+        <div class="content-inner">
+          <p>
+            The rate at which new bitcoins are created is algorithmically cut in half roughly every 4 years (210,000 blocks). Bitcoin has gone through two halvings to date; in November 2012, and again in July 2016. Since blocks are generated every 10 minutes on average, and starting at 50 new bitcoins per block when the system was launched in 2009, this creates a very well-defined supply curve. The stability of Bitcoin's monetary policy a key differentiator versus other crypto assets.
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- CryptoRival Calculator Widget BEGIN -->
-<script type="text/javascript" src="https://static.cryptorival.com/js/calcwidget.js"></script>
-<a id="cr-copyright" href="https://cryptorival.com/" target="_blank" rel="nofollow">Powered by CryptoRival</a>
-<script type="text/javascript">
+<!-- <script type="text/javascript" src="https://static.cryptorival.com/js/calcwidget.js"></script> -->
+<!-- <a id="cr-copyright" href="https://cryptorival.com/" target="_blank" rel="nofollow">Powered by CryptoRival</a> -->
+<!-- <script type="text/javascript">
 showCalc('bitcoin', '500', false, '0', 'f93', 'f93', 'f93', '4e9f15', '09c', 'f0ad4e', 'd9534f', 'f5f5f5', 'eee');
-</script>
+</script> -->
 <!-- CryptoRival Calculator Widget END -->
 
     <div >
-      <p style="text-align: center"> Related Stories</p>
+      <h3 style="text-align: center"> RELATED STORIES</h3>
       <script src="https://cointelegraph.com/news-widget" data-ct-widget-limit="50" data-ct-widget-theme="dark" data-ct-widget-size="large" data-ct-widget-images="true">
       </script>
     </div>
 
-    <div class="footer">
+    <div class="footer" style="margin-bottom: 3%">
       <p>© 2018  Built by  <a href="https://github.com/mvhdi" target="_blank" >Mahdi</a>  with <a href="https://github.com/alexandersimoes/d3plus/tree/2.0" target="_blank" >D3Plus</a></p>
     </div>
 

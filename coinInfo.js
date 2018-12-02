@@ -12,7 +12,9 @@
         "https://en.bitcoinwiki.org/wiki/bitcoin?utm_source=coin360&utm_medium=referral&utm_campaign=coininfo",
         "Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Although other cryptocurrencies have come before, Bitcoin is the first decentralized cryptocurrency - Its reputation has spawned copies and evolution in the space.",
         "https://www.blockchain.com/explorer",
-        "Coin"
+        "Coin",
+        "exists",
+        
         ];
 
     algoMap["XRP"]=[
@@ -87,16 +89,75 @@
         "https://iost.io/",
         "https://twitter.com/iostoken?lang=en",
         "https://github.com/iost-official/go-iost",
+        "https://en.bitcoinwiki.org/wiki/IOStoken",
         "The Internet of Services (IOS) is an Ethereum-based platform that provides its users a way to exchange online services and digital goods. I also enables developers to deploy large scale dApps.",
         "https://etherscan.io/token/0xfa1a856cfa3409cfa145fa4e20eb270df3eb21ab",
         "Token"
         ];
   
-    algoMap["Litecoin"]=["Scrypt"];
-    algoMap["Tether"]=["Omni"];
-    algoMap["Monero"]=["CryptoNight"];
-    algoMap["TRON"]=["Other"];
-    algoMap["IOTA"]=["DAG"];
+    algoMap["Litecoin"]=["Scrypt",
+        "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=359&pref_coin_id=1505",
+        "C++",
+        "Charlie Lee",
+        "7 October 2011",
+        "https://bitcoin.org/bitcoin.pdf",
+        "https://litecoin.com/",
+        "https://twitter.com/litecoin",
+        "https://github.com/litecoin-project/litecoin",
+        "https://en.bitcoinwiki.org/wiki/litecoin?utm_source=coin360&utm_medium=referral&utm_campaign=coininfo",
+        "Litecoin LTC - provides faster transaction confirmations (2.5 minutes on average) and uses a memory-hard, scrypt-based mining proof-of-work algorithm to target the regular computers and GPUs most people already have - which are its main differentials to Bitcoin. The Litecoin network is scheduled to produce 84 million currency units with a halving in reward every four years just like bitcoin. The coin was created by a Google employee, Charles Lee. Litecoin is in second spot to Bitcoin and has spawned numerous clones - however it has a solid base of support and dedicated development team.",
+        "https://chainz.cryptoid.info/ltc/",
+        "Coin"
+        ];
+
+    algoMap["Tether"]=["Omni",
+        "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=637&pref_coin_id=1505" ,
+        "C++",
+        "J.R. Willett",
+        "Oct 6, 2014",
+        "https://tether.to/",
+        "https://twitter.com/Tether_to",
+        "https://en.bitcoinwiki.org/wiki/tether?utm_source=coin360&utm_medium=referral&utm_campaign=coininfo",
+        "https://tether.to/",
+        "USDT is a cryptocurrency asset issued on the Bitcoin blockchain via the Omni Layer Protocol. Each USDT unit is backed by a U.S Dollar held in the reserves of the Tether Limited and can be redeemed through the Tether Platform. USDT can be transferred, stored, spent, just like bitcoins or any other cryptocurrency.",
+        "https://tether.to/wp-content/uploads/2016/06/TetherWhitePaper.pdf",
+        "https://www.omniexplorer.info/asset/31",
+        "Token"
+        ];
+
+    algoMap["Monero"]=["CryptoNight",
+        "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=6&pref_coin_id=1505" ,
+        "C++",
+        "Nicolas van Saberhagen",
+        "2014",
+        "https://github.com/monero-project/research-lab/blob/master/whitepaper/whitepaper.pdf",
+        "https://ww.getmonero.org/",
+        "https://twitter.com/monero",
+        "https://github.com/monero-project/monero",
+        "https://en.bitcoinwiki.org/wiki/monero?utm_source=coin360&utm_medium=referral&utm_campaign=coininfo",
+        "Monero (XMR) is a cryptonight algorithm based alternative crypto currency. The coin is based on Proof of Work and has a block reward that varies smoothly. The difficulty retargets every block with a sixty second block target.",
+        "https://moneroblocks.info/",
+        "Coin"
+        ];
+
+
+    algoMap["TRON"]=["Other",
+        "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=8550&pref_coin_id=1505",
+        "https://developers.tron.network/docs",
+        "https://tron.network/index?lng=en",
+        "https://twitter.com/tronfoundation",
+        "https://github.com/tronprotocol/java-tron",
+        "https://en.bitcoinwiki.org/wiki/tron?utm_source=coin360&utm_medium=referral&utm_campaign=coininfo",
+        "each user to freely publish, store and own data, and in the decentralized autonomous form, decides the distribution, subscription and push of contents and enables content creators by releasing, circulating and dealing with digital assets, thus forming a decentralized content entertainment ecosystem.&nbsp;Tronix ix an ERC20 token based on the Ethereum blockchain, acting as the basic unit of account on the platform.",
+        "https://tronscan.org/#/",
+        "Coin"
+        ];
+
+
+
+    algoMap["IOTA"]=["DAG",
+        ];
+        
     algoMap["Dash"]=["X11"];
     algoMap["Binance Coin"]=["Ethereum Token"];
     algoMap["NEM"]=["Apostille"];
