@@ -4,28 +4,59 @@
    <link rel="stylesheet" href="coinvista.css">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <style>
+    .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    margin-left: 50vw;
+   
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    
+    background-color: rgba(0,0,0,.8);
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -220px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
   </style>
 </head>
 
-<body style="background-color: #1D2330; color: white">
+<body style="background-color: #1D2330; color: white; height: 100vh">
   <script src="//d3plus.org/js/d3.js"></script>
   <script src="//d3plus.org/js/d3plus.js"></script>
   
-    <div id="viz" style="margin-left: 10px; margin-top: 10px; margin-right: 0px"></div>
-  <div id="vizz"> </div>
+    <div id="viz" style="margin-left: 10px; margin-top: 5px; margin-right: 10px; margin-bottom: 0px; height: 88vh"></div>
+  
   
   <script src='test.js'></script>
   <script src='coinInfo.js'></script>
   <script src='coinvista.js'></script>
 
-  <div style="text-align: center">
+
+
+  <div style="text-align: center; ">
     <p style="font-size: 12px"> <b>VIEW BY:</b> 
     <button    id="out" onclick="myFunction(2)"> CATEGORY</button>
     &nbsp;
     <button  id="in" onclick="myFunction(1)">SUB-CATEGORY</button>
     &nbsp;&nbsp;
     <b> CATEGORIZE BY: </b>
-    <button  id="algo" onclick="myFunction(5)">ALGORITHM</button>
+    <button  id="algorithm" onclick="myFunction(5)">ALGORITHM</button>
     &nbsp;
     <button  id="w/l" onclick="myFunction(6)">WINNERS/LOSERS</button>
     &nbsp;&nbsp;
@@ -50,23 +81,26 @@
   </div>
   <script >
     
-      document.getElementById('out').style.backgroundColor="black";
+      document.getElementById('out').style.backgroundColor="#00A0C6";
       document.getElementById('out').style.color="white";
 
-      document.getElementById('market').style.backgroundColor="black";
+      document.getElementById('market').style.backgroundColor="#00A0C6";
       document.getElementById('market').style.color="white";
 
-      document.getElementById('algo').style.backgroundColor="black";
-      document.getElementById('algo').style.color="white";
+      document.getElementById('algorithm').style.backgroundColor="#00A0C6";
+      document.getElementById('algorithm').style.color="white";
 
-      document.getElementById('24h').style.backgroundColor="black";
+      document.getElementById('24h').style.backgroundColor="#00A0C6";
       document.getElementById('24h').style.color="white";
 
-      document.getElementById('usd').style.backgroundColor="black";
+      document.getElementById('usd').style.backgroundColor="#00A0C6";
       document.getElementById('usd').style.color="white";
   </script>
+  <div id="vizz"> </div>
 
-
+  <div class="tooltip" ><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
+  <span class="tooltiptext"><p> Green = Postive percent change. </p> <p> Red = Negative percent change. </p> <p> White = Category with red coins and green coins. </p> <p> The percentage on the bottom of each square is the block size by percentage.  </p> <p> Click on a coin (deepest level) and scroll down for more infomation about it.</p></span>
+</div>
 
   <div id = "coin_info">
     <div>
@@ -186,11 +220,11 @@ showCalc('bitcoin', '500', false, '0', 'f93', 'f93', 'f93', '4e9f15', '09c', 'f0
 </script> -->
 <!-- CryptoRival Calculator Widget END -->
 
-    <div >
+<!--     <div >
       <h3 style="text-align: center"> RELATED STORIES</h3>
       <script src="https://cointelegraph.com/news-widget" data-ct-widget-limit="50" data-ct-widget-theme="dark" data-ct-widget-size="large" data-ct-widget-images="true">
       </script>
-    </div>
+    </div> -->
 
     <div class="footer" style="margin-bottom: 3%">
       <p>© 2018  Built by  <a href="https://github.com/mvhdi" target="_blank" >Mahdi</a>  with <a href="https://github.com/alexandersimoes/d3plus/tree/2.0" target="_blank" >D3Plus</a></p>

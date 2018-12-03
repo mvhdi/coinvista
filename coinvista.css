@@ -170,6 +170,8 @@ p {
 button{
   font-size: 12px;
       border: none;
+  background: white;
+  color: #00A0C6;
    
     padding: 7px 7px;
     text-align: center;

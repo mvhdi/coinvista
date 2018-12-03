@@ -49,18 +49,18 @@ for (var k in tickerMap) {
         list.push(
             { 
                 "name": k, 
-                "algo": xxx[0], 
+                "algorithm": xxx[0], 
                 "symbol": tickerMap[k][0], 
                 "rank" : (tickerMap[k][1]), 
                 "market_cap_usd": parseFloat(tickerMap[k][2]), 
                 "24h_volume_usd": (tickerMap[k][3]), 
                 "max_supply": (tickerMap[k][4]), 
                 "available_supply": (tickerMap[k][5]), 
-                "price_usd": (tickerMap[k][6]), 
+                "price_usd": "$"+(tickerMap[k][6]), 
                 "price_btc": (tickerMap[k][7]), 
-                "change_1h": (tickerMap[k][8]), 
-                "change_7d": (tickerMap[k][9]), 
-                "change_24h": (tickerMap[k][10]), 
+                "change_1h": (tickerMap[k][8])+"%", 
+                "change_7d": (tickerMap[k][9])+"%", 
+                "change_24h": (tickerMap[k][10])+"%", 
                 "color" : determineColor(parseFloat(tickerMap[k][period]))[0], 
                 "status": determineColor(parseFloat(tickerMap[k][period]))[1], 
                 "Name":k+"_" 
@@ -80,14 +80,14 @@ for (var k in tickerMap) {
 // ------------ draw out the actual treemap ---------------
   var coinvista = d3plus.viz()
     .container("#viz")
+    .dev( true )
     .data(list)
     .type("tree_map")
     .id([cat,"name","Name"])
     .size(blockSizeBy)
-    .height(window.innerHeight-50)
-    .width(window.innerWidth-20)
-    
-    
+    .height(window.innerHeight-90)
+    .width(window.innerWidth-40)
+    .resize( true )
     .depth(depthLevel)
     .font({ "size": 20, "spacing": 5, "weight":700 })
     .color("color")
@@ -102,6 +102,7 @@ for (var k in tickerMap) {
         }
         // call redraw on mouse movements with the updated currentdepth and currentCoin
         redrawMouseMove();
+        redrawScroll();
         redrawMouseClick();
         redrawMouseOut();
         }
@@ -123,7 +124,7 @@ for (var k in tickerMap) {
       }
     })
     .labels({"align": "center", "valign": "top", "size": 100, "family": "Helvetica Neue", "spacing": 5, "weight":700 })
-    .tooltip({"value": ["Name","market_cap_usd","24h_volume_usd","price_usd", "price_btc" ,"change_1h","change_24h","change_7d","available_supply"], "background": "rgba(255,255,255,0.85)"})
+    .tooltip({"value": ["Name","market_cap_usd","24h_volume_usd","price_usd", "price_btc" ,"change_1h","change_24h","change_7d","available_supply", "algorithm"], "background": "rgba(255,255,255,0.85)"})
     .draw()
 
 //---------------------where functions go ---------------------------
@@ -146,7 +147,12 @@ function redrawMouseMove(){
     redraw()    
   })
 }
-
+// redraws when scroll
+function redrawScroll(){
+  d3.selectAll("#viz").on("scroll", function(d) {
+    redraw()    
+  })
+}
 // redraws when mouse is clicked
 function redrawMouseClick(){
   d3.selectAll("#viz").on("click", function(d) {
@@ -214,7 +220,7 @@ var depthLevel=0;
       
 var blockSizeBy="market_cap_usd"; 
       
-var cat = "algo";
+var cat = "algorithm";
       
 var period = 10;
 
@@ -237,101 +243,101 @@ function myFunction(value) {
 
     if (value == 1){
       depthLevel=1;
-      document.getElementById('in').style.backgroundColor="black";
+      document.getElementById('in').style.backgroundColor="#00A0C6";
       document.getElementById('in').style.color="white";
       document.getElementById('out').style.backgroundColor="white";
-      document.getElementById('out').style.color="black";
+      document.getElementById('out').style.color="#00A0C6";
 
     };
     if (value == 2){
       depthLevel=0;
-      document.getElementById('out').style.backgroundColor="black";
+      document.getElementById('out').style.backgroundColor="#00A0C6";
       document.getElementById('out').style.color="white";
       document.getElementById('in').style.backgroundColor="white";
-      document.getElementById('in').style.color="black";
+      document.getElementById('in').style.color="#00A0C6";
 
     };
     if (value == 3){
       blockSizeBy="market_cap_usd";
-      document.getElementById('market').style.backgroundColor="black";
+      document.getElementById('market').style.backgroundColor="#00A0C6";
       document.getElementById('market').style.color="white";
       document.getElementById('volume').style.backgroundColor="white";
-      document.getElementById('volume').style.color="black";
+      document.getElementById('volume').style.color="#00A0C6";
 
 
     };
     if (value == 4){
       blockSizeBy="24h_volume_usd";
-      document.getElementById('volume').style.backgroundColor="black";
+      document.getElementById('volume').style.backgroundColor="#00A0C6";
       document.getElementById('volume').style.color="white";
       document.getElementById('market').style.backgroundColor="white";
-      document.getElementById('market').style.color="black";
+      document.getElementById('market').style.color="#00A0C6";
 
     };
     if (value == 5){
-      cat = "algo";
-      document.getElementById('algo').style.backgroundColor="black";
-      document.getElementById('algo').style.color="white";
+      cat = "algorithm";
+      document.getElementById('algorithm').style.backgroundColor="#00A0C6";
+      document.getElementById('algorithm').style.color="white";
       document.getElementById('w/l').style.backgroundColor="white";
-      document.getElementById('w/l').style.color="black";
+      document.getElementById('w/l').style.color="#00A0C6";
 
     };
     if (value == 6){
       cat = "status";
-      document.getElementById('w/l').style.backgroundColor="black";
+      document.getElementById('w/l').style.backgroundColor="#00A0C6";
       document.getElementById('w/l').style.color="white";
-      document.getElementById('algo').style.backgroundColor="white";
-      document.getElementById('algo').style.color="black";
+      document.getElementById('algorithm').style.backgroundColor="white";
+      document.getElementById('algorithm').style.color="#00A0C6";
 
     };
     if (value == 7){
       period = 8;
-      document.getElementById('1h').style.backgroundColor="black";
+      document.getElementById('1h').style.backgroundColor="#00A0C6";
       document.getElementById('1h').style.color="white";
       document.getElementById('7d').style.backgroundColor="white";
-      document.getElementById('7d').style.color="black";
+      document.getElementById('7d').style.color="#00A0C6";
       document.getElementById('24h').style.backgroundColor="white";
-      document.getElementById('24h').style.color="black";
+      document.getElementById('24h').style.color="#00A0C6";
 
     };
     if (value == 8){
       period = 10;
-      document.getElementById('24h').style.backgroundColor="black";
+      document.getElementById('24h').style.backgroundColor="#00A0C6";
       document.getElementById('24h').style.color="white";
       document.getElementById('1h').style.backgroundColor="white";
-      document.getElementById('1h').style.color="black";
+      document.getElementById('1h').style.color="#00A0C6";
       document.getElementById('7d').style.backgroundColor="white";
-      document.getElementById('7d').style.color="black";
+      document.getElementById('7d').style.color="#00A0C6";
 
     };
     if (value == 99){
       period = 9;
-      document.getElementById('7d').style.backgroundColor="black";
+      document.getElementById('7d').style.backgroundColor="#00A0C6";
       document.getElementById('7d').style.color="white";
       document.getElementById('24h').style.backgroundColor="white";
-      document.getElementById('24h').style.color="black";
+      document.getElementById('24h').style.color="#00A0C6";
       document.getElementById('1h').style.backgroundColor="white";
-      document.getElementById('1h').style.color="black";
+      document.getElementById('1h').style.color="#00A0C6";
       
 
     };
     
     if (value == 100){
       currency = "usd";
-      document.getElementById('usd').style.backgroundColor="black";
+      document.getElementById('usd').style.backgroundColor="#00A0C6";
       document.getElementById('usd').style.color="white";
       document.getElementById('bitcoin').style.backgroundColor="white";
-      document.getElementById('bitcoin').style.color="black";
+      document.getElementById('bitcoin').style.color="#00A0C6";
       
 
     
     };
     if (value == 101){
       currency = "bitcoin";
-      document.getElementById('bitcoin').style.backgroundColor="black";
+      document.getElementById('bitcoin').style.backgroundColor="#00A0C6";
       document.getElementById('bitcoin').style.color="white";
       document.getElementById('usd').style.backgroundColor="white";
-      document.getElementById('usd').style.color="black";
+      document.getElementById('usd').style.color="#00A0C6";
       
 
     };
@@ -339,7 +345,7 @@ function myFunction(value) {
 
     d3.selectAll("#viz").selectAll("div").remove();
     makeviz(blockSizeBy,depthLevel,cat,period,currency);
-
+window.addEventListener("resize", redraw());
 
 }
 
