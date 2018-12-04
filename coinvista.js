@@ -3,7 +3,7 @@
 // https://github.com/mvhdi/coinvista
 // https://github.com/coinvista/coinvista
 
-function makeviz(blockSizeBy,depthLevel,cat,period, currency){
+function makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend){
 // All functions need to called inside the d3.json to access ticker data
 d3.json('https://api.coinlore.com/api/tickers/', function(data) {
     var inital = document.getElementById("coin_info" );
@@ -53,17 +53,19 @@ for (var k in tickerMap) {
                 "symbol": tickerMap[k][0], 
                 "rank" : (tickerMap[k][1]), 
                 "market_cap_usd": parseFloat(tickerMap[k][2]), 
-                "24h_volume_usd": (tickerMap[k][3]), 
-                "max_supply": (tickerMap[k][4]), 
-                "available_supply": (tickerMap[k][5]), 
+                "24h_volume_usd": parseFloat(tickerMap[k][3]), 
+                "max_supply": parseFloat(tickerMap[k][4]), 
+                "available_supply": parseFloat(tickerMap[k][5]), 
                 "price_usd": "$"+(tickerMap[k][6]), 
-                "price_btc": (tickerMap[k][7]), 
+                "price_btc": "₿"+(tickerMap[k][7]), 
                 "change_1h": (tickerMap[k][8])+"%", 
                 "change_7d": (tickerMap[k][9])+"%", 
                 "change_24h": (tickerMap[k][10])+"%", 
                 "color" : determineColor(parseFloat(tickerMap[k][period]))[0], 
                 "status": determineColor(parseFloat(tickerMap[k][period]))[1], 
-                "Name":k+"_" 
+                "Name":k+"_",
+
+            
             }
         );
 
@@ -85,13 +87,13 @@ for (var k in tickerMap) {
     .type("tree_map")
     .id([cat,"name","Name"])
     .size(blockSizeBy)
-    .height(window.innerHeight-90)
-    .width(window.innerWidth-40)
+    .height(window.innerHeight-100)
+    .width(window.innerWidth-20)
     .resize( true )
     .depth(depthLevel)
     .font({ "size": 20, "spacing": 5, "weight":700 })
-    .color("color")
-    .legend({"value": false})
+    .color(colorBy)
+    .legend({"value": showLegend})
     .format({"text": function(text,key){
       // use info in key object to updated the currentDepth and currentCoin the user is looking at
       if(key["vars"] != undefined){
@@ -124,7 +126,7 @@ for (var k in tickerMap) {
       }
     })
     .labels({"align": "center", "valign": "top", "size": 100, "family": "Helvetica Neue", "spacing": 5, "weight":700 })
-    .tooltip({"value": ["Name","market_cap_usd","24h_volume_usd","price_usd", "price_btc" ,"change_1h","change_24h","change_7d","available_supply", "algorithm"], "background": "rgba(255,255,255,0.85)"})
+    .tooltip({"value": ["rank","Name","market_cap_usd","24h_volume_usd","price_usd", "price_btc" ,"change_1h","change_24h","change_7d","available_supply","max_supply", "algorithm"], "background": "rgba(255,255,255,0.85)"})
     .draw()
 
 //---------------------where functions go ---------------------------
@@ -214,140 +216,108 @@ function redraw(){
 })
 };
 
-// ₿
+// ------------------functions for dropdown to build diff visuals ----------------
 
-var depthLevel=0;
-      
-var blockSizeBy="market_cap_usd"; 
-      
-var cat = "algorithm";
-      
+var depthLevel=0;      
+var blockSizeBy="market_cap_usd";      
+var cat = "algorithm";     
 var period = 10;
-
 var currency = "usd";
-     
+var colorBy = "color";
+var showLegend = false;
+makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
 
-makeviz(blockSizeBy,depthLevel,cat,period,currency);
-// makeviz("24h_volume_usd",1);
-
-
-function myFunction(value) {
-    // var x = document.createElement("BUTTON");
-    // var t = document.createTextNode("Click me");
-    // x.appendChild(t);
-    // document.body.appendChild(x);
-
-
-
-   
-
-    if (value == 1){
+function updateView() {
+  var value = document.getElementById("viewSelect").value;
+  if (value == "1"){
       depthLevel=1;
-      document.getElementById('in').style.backgroundColor="#00A0C6";
-      document.getElementById('in').style.color="white";
-      document.getElementById('out').style.backgroundColor="white";
-      document.getElementById('out').style.color="#00A0C6";
-
-    };
-    if (value == 2){
+  };
+     if (value == "2"){
       depthLevel=0;
-      document.getElementById('out').style.backgroundColor="#00A0C6";
-      document.getElementById('out').style.color="white";
-      document.getElementById('in').style.backgroundColor="white";
-      document.getElementById('in').style.color="#00A0C6";
+   }; 
+   d3.selectAll("#viz").selectAll("div").remove();
+    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+};
 
-    };
-    if (value == 3){
-      blockSizeBy="market_cap_usd";
-      document.getElementById('market').style.backgroundColor="#00A0C6";
-      document.getElementById('market').style.color="white";
-      document.getElementById('volume').style.backgroundColor="white";
-      document.getElementById('volume').style.color="#00A0C6";
-
-
-    };
-    if (value == 4){
-      blockSizeBy="24h_volume_usd";
-      document.getElementById('volume').style.backgroundColor="#00A0C6";
-      document.getElementById('volume').style.color="white";
-      document.getElementById('market').style.backgroundColor="white";
-      document.getElementById('market').style.color="#00A0C6";
-
-    };
-    if (value == 5){
+function updateCat() {
+  var value = document.getElementById("catSelect").value;
+  if (value == "5"){
       cat = "algorithm";
-      document.getElementById('algorithm').style.backgroundColor="#00A0C6";
-      document.getElementById('algorithm').style.color="white";
-      document.getElementById('w/l').style.backgroundColor="white";
-      document.getElementById('w/l').style.color="#00A0C6";
-
-    };
-    if (value == 6){
+  };
+     if (value == "6"){
       cat = "status";
-      document.getElementById('w/l').style.backgroundColor="#00A0C6";
-      document.getElementById('w/l').style.color="white";
-      document.getElementById('algorithm').style.backgroundColor="white";
-      document.getElementById('algorithm').style.color="#00A0C6";
+   }; 
+   d3.selectAll("#viz").selectAll("div").remove();
+    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+};
 
-    };
-    if (value == 7){
+function updateBlock() {
+  var value = document.getElementById("blockSelect").value;
+  if (value == "3"){
+      blockSizeBy="market_cap_usd";
+  };
+     if (value == "4"){
+      blockSizeBy="24h_volume_usd";
+   }; 
+   d3.selectAll("#viz").selectAll("div").remove();
+    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+};
+
+function updateTime() {
+  var value = document.getElementById("timeSelect").value;
+  if (value == "7"){
       period = 8;
-      document.getElementById('1h').style.backgroundColor="#00A0C6";
-      document.getElementById('1h').style.color="white";
-      document.getElementById('7d').style.backgroundColor="white";
-      document.getElementById('7d').style.color="#00A0C6";
-      document.getElementById('24h').style.backgroundColor="white";
-      document.getElementById('24h').style.color="#00A0C6";
-
-    };
-    if (value == 8){
+  };
+     if (value == "8"){
       period = 10;
-      document.getElementById('24h').style.backgroundColor="#00A0C6";
-      document.getElementById('24h').style.color="white";
-      document.getElementById('1h').style.backgroundColor="white";
-      document.getElementById('1h').style.color="#00A0C6";
-      document.getElementById('7d').style.backgroundColor="white";
-      document.getElementById('7d').style.color="#00A0C6";
-
-    };
-    if (value == 99){
+   }; 
+     if (value == "99"){
       period = 9;
-      document.getElementById('7d').style.backgroundColor="#00A0C6";
-      document.getElementById('7d').style.color="white";
-      document.getElementById('24h').style.backgroundColor="white";
-      document.getElementById('24h').style.color="#00A0C6";
-      document.getElementById('1h').style.backgroundColor="white";
-      document.getElementById('1h').style.color="#00A0C6";
-      
+   };
+   d3.selectAll("#viz").selectAll("div").remove();
+    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+};
 
-    };
-    
-    if (value == 100){
+function updateMoney() {
+  var value = document.getElementById("moneySelect").value;
+  if (value == "100"){
       currency = "usd";
-      document.getElementById('usd').style.backgroundColor="#00A0C6";
-      document.getElementById('usd').style.color="white";
-      document.getElementById('bitcoin').style.backgroundColor="white";
-      document.getElementById('bitcoin').style.color="#00A0C6";
-      
-
-    
-    };
-    if (value == 101){
+  };
+     if (value == "101"){
       currency = "bitcoin";
-      document.getElementById('bitcoin').style.backgroundColor="#00A0C6";
-      document.getElementById('bitcoin').style.color="white";
-      document.getElementById('usd').style.backgroundColor="white";
-      document.getElementById('usd').style.color="#00A0C6";
-      
+   }; 
+   d3.selectAll("#viz").selectAll("div").remove();
+    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+};
 
-    };
+function updateColor() {
+  var value = document.getElementById("colorSelect").value;
+  if (value == "102"){
+      var colorBy = "color";
+      var showLegend = false;
+  };
+     if (value == "103"){
+      var colorBy = "market_cap_usd";
+      var showLegend = true;
+   };
+  if (value == "104"){
+      var colorBy = "24h_volume_usd";
+      var showLegend = true;
+  };
+     if (value == "105"){
+      var colorBy = "max_supply";
+      var showLegend = true;
+   }; 
+     if (value == "106"){
+      var colorBy = "available_supply";
+      var showLegend = true;
+   }; 
+   d3.selectAll("#viz").selectAll("div").remove();
+    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+};
 
 
-    d3.selectAll("#viz").selectAll("div").remove();
-    makeviz(blockSizeBy,depthLevel,cat,period,currency);
-window.addEventListener("resize", redraw());
-
-}
 
 
 
+             

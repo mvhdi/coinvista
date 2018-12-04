@@ -40,7 +40,7 @@
   <script src="//d3plus.org/js/d3.js"></script>
   <script src="//d3plus.org/js/d3plus.js"></script>
   
-    <div id="viz" style="margin-left: 10px; margin-top: 5px; margin-right: 10px; margin-bottom: 0px; height: 88vh"></div>
+    <div id="viz" style="margin-left: 10px; margin-top: 5px; margin-right: 10px; margin-bottom: 0px; height: 86vh"></div>
   
   
   <script src='test.js'></script>
@@ -50,74 +50,64 @@
 
 
   <div style="text-align: center; ">
+
     <p style="font-size: 12px"> <b>VIEW BY:</b> 
-    <button    id="out" onclick="myFunction(2)"> CATEGORY</button>
-    &nbsp;
-    <button  id="in" onclick="myFunction(1)">SUB-CATEGORY</button>
+          <select id="viewSelect" onchange="updateView()">
+            <option value="2">CATEGORY
+            <option value="1">SUB-CATEGORY
+          </select>
     &nbsp;&nbsp;
     <b> CATEGORIZE BY: </b>
-    <button  id="algorithm" onclick="myFunction(5)">ALGORITHM</button>
-    &nbsp;
-    <button  id="w/l" onclick="myFunction(6)">WINNERS/LOSERS</button>
+          <select id="catSelect" onchange="updateCat()">
+            <option value="5">ALGORITHM
+            <option value="6">GAINERS/LOSERS
+          </select>
     &nbsp;&nbsp;
     <b> BLOCK SIZE BY: </b>
-    <button  id="market" onclick="myFunction(3)">MARKET SHARE</button>
-    &nbsp;
-    <button  id="volume" onclick="myFunction(4)">VOLUME</button>
+          <select id="blockSelect" onchange="updateBlock()">
+            <option value="3">MARKET SHARE
+            <option value="4">24H VOLUME
+          </select>
     &nbsp;&nbsp;
     <b> TIME PERIOD: </b>
-    <button  id="1h" onclick="myFunction(7)">1H</button>
-    &nbsp;
-    <button  id="24h" onclick="myFunction(8)">24H</button>
-    &nbsp;
-    <button  id="7d" onclick="myFunction(99)">7D</button>
+          <select id="timeSelect" onchange="updateTime()">
+            <option value="7">1 Hour
+            <option value="8">24 Hours
+            <option value="99">7 Days
+          </select>
+    
     &nbsp;&nbsp;
     <b> CURRENCY: </b>
-    <button  id="usd" onclick="myFunction(100)">USD</button>
-    &nbsp;
-    <button  id="bitcoin" onclick="myFunction(101)">BITCOIN</button>
-  
+          <select id="moneySelect" onchange="updateMoney()">
+            <option value="100">USD
+            <option value="101">BITCOIN
+          </select>
+    &nbsp;&nbsp;
+    <b> Color by: </b>
+          <select id="colorSelect" onchange="updateColor()">
+            <option value="102">GAINERS/LOSERS
+            <option value="103">MARKET CAP USD 
+            <option value="104">24H VOLUME USD
+            <option value="104">MAX SUPPLY 
+            <option value="104">AVAILABLE SUPPLY 
+          </select>
     </p>
   </div>
   <script >
     
-      document.getElementById('out').style.backgroundColor="#00A0C6";
-      document.getElementById('out').style.color="white";
 
-      document.getElementById('market').style.backgroundColor="#00A0C6";
-      document.getElementById('market').style.color="white";
-
-      document.getElementById('algorithm').style.backgroundColor="#00A0C6";
-      document.getElementById('algorithm').style.color="white";
-
-      document.getElementById('24h').style.backgroundColor="#00A0C6";
-      document.getElementById('24h').style.color="white";
-
-      document.getElementById('usd').style.backgroundColor="#00A0C6";
-      document.getElementById('usd').style.color="white";
   </script>
   <div id="vizz"> </div>
 
   <div class="tooltip" ><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
-  <span class="tooltiptext"><p> Green = Postive percent change. </p> <p> Red = Negative percent change. </p> <p> White = Category with red coins and green coins. </p> <p> The percentage on the bottom of each square is the block size by percentage.  </p> <p> Click on a coin (deepest level) and scroll down for more infomation about it.</p></span>
+  <span class="tooltiptext"><p> The percentage on the bottom of each square is the block size by percentage.  </p> <p> Click on a coin (deepest level) and scroll down for more infomation about it.</p></span>
 </div>
 
   <div id = "coin_info">
     <div>
       <h1 id = "coin_name" style="text-align: center">Bitcoin</h1>
       <p> <i>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Although other cryptocurrencies have come before, Bitcoin is the first decentralized cryptocurrency - Its reputation has spawned copies and evolution in the space.</i></p>
-   <!--    <p> <b> Algorithm: </b> <a id = "coin_algo_link" href="https://en.bitcoin.it/wiki/SHA-256" target="_blank" > <b id = "coin_algo">SHA256d </b> </a> </p>  -->  
-      <!-- <p> <b> Proof Type: </b> <a href="https://en.bitcoin.it/wiki/Proof_of_work" target="_blank" >Proof of Work</a></p>  -->   
-      <!-- <p> <b>Founders: </b> <a href="https://en.wikipedia.org/wiki/Satoshi_Nakamoto" target="_blank" >Satoshi Nakamoto</a>  </p>
-       -->
-      <!-- <p> <a href="https://www.blockchain.com/explorer" target="_blank" >Explore</a> </p> 
-      <p><a href="https://bitcoin.org" target="_blank" >Website</a>
-      <a href="https://github.com/bitcoinjs/bitcoinjs-lib" target="_blank" >Github</a>
-      <a href="https://www.facebook.com/bitcoins/" target="_blank" >Facebook</a>
-      <a href="https://twitter.com/bitcoin" target="_blank" >Twitter</a>
-      <a href="https://www.reddit.com/r/bitcoin/" target="_blank" >Reddit</a>
-      <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" >White Paper</a> </p>
-      <p> <a href="https://bitcoinwiki.org/wiki/bitcoin" target="_blank" >Read more on bitcoinwiki.org</a></p> -->
+  
           <p style="text-align: center "> 
               
                         <a href="https://bitcoin.org" target="_blank" class="fa fa-link fa-2x"></a>
@@ -212,19 +202,7 @@
       </div>
     </div>
 
-    <!-- CryptoRival Calculator Widget BEGIN -->
-<!-- <script type="text/javascript" src="https://static.cryptorival.com/js/calcwidget.js"></script> -->
-<!-- <a id="cr-copyright" href="https://cryptorival.com/" target="_blank" rel="nofollow">Powered by CryptoRival</a> -->
-<!-- <script type="text/javascript">
-showCalc('bitcoin', '500', false, '0', 'f93', 'f93', 'f93', '4e9f15', '09c', 'f0ad4e', 'd9534f', 'f5f5f5', 'eee');
-</script> -->
-<!-- CryptoRival Calculator Widget END -->
 
-<!--     <div >
-      <h3 style="text-align: center"> RELATED STORIES</h3>
-      <script src="https://cointelegraph.com/news-widget" data-ct-widget-limit="50" data-ct-widget-theme="dark" data-ct-widget-size="large" data-ct-widget-images="true">
-      </script>
-    </div> -->
 
     <div class="footer" style="margin-bottom: 3%">
       <p>© 2018  Built by  <a href="https://github.com/mvhdi" target="_blank" >Mahdi</a>  with <a href="https://github.com/alexandersimoes/d3plus/tree/2.0" target="_blank" >D3Plus</a></p>
