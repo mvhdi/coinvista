@@ -2,21 +2,16 @@
 // start: 11/22/18
 // https://github.com/mvhdi/coinvista
 // https://github.com/coinvista/coinvista
-
 function makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend){
-// All functions need to called inside the d3.json to access ticker data
+// All viz functions need to called inside the d3.json to access ticker data
 d3.json('https://api.coinlore.com/api/tickers/', function(data) {
-    var inital = document.getElementById("coin_info" );
-    inital.style.display = "none";
 // initalize global variables
   var ticker= data;
   var dataForTreeMap;
   var tickerMap={};
   var currentCoin="level 0"
   var currentDepth = 0;
-
   // --------- parse the ticker data from the api and put into map
-  
   var i = 0;
   while (i<100){
     // console.log(ticker[i].id)
@@ -31,15 +26,12 @@ d3.json('https://api.coinlore.com/api/tickers/', function(data) {
         ticker.data[i]["price_btc"],
         ticker.data[i]["percent_change_1h"],
         ticker.data[i]["percent_change_7d"],
-        ticker.data[i]["percent_change_24h"],
-        
+        ticker.data[i]["percent_change_24h"],    
     ];
     i++;
   };
-
 // create array of object that is the data input for the treemap
 // algoMap contains extra data not from the ticker, and is created in coinInfo.js
-
 //================================== coins are ranked top 100, and last 20 change, so make sure to only show coins I have extra info for.
 var list = [];
 for (var k in tickerMap) {
@@ -64,22 +56,14 @@ for (var k in tickerMap) {
                 "change_24h": (tickerMap[k][10])+"%", 
                 "color" : determineColor(parseFloat(tickerMap[k][period]))[0], 
                 "status": determineColor(parseFloat(tickerMap[k][period]))[1], 
-                "Name":k+"_",
-
-            
+                "Name":k+".",        
             }
         );
-
     }
     else{
-                // console.log(k)
-    }
-  
+                // console.log(k)  used to view new coins on ticker but not in algoMap
+    }  
 }
-
-// console.log(counter);
-
-
 // ------------ draw out the actual treemap ---------------
   var coinvista = d3plus.viz()
     .container("#viz")
@@ -118,8 +102,7 @@ for (var k in tickerMap) {
             if(currency == "bitcoin"){
               var newV =  tickerMap[text][0].toUpperCase()+"  "+parseFloat(tickerMap[text][period])+"%"+"\n "+"\n"+ "₿"+(tickerMap[text][7])
               return newV
-            }    
-            
+            }              
         }
         else {
             return text.toUpperCase()
@@ -132,7 +115,6 @@ for (var k in tickerMap) {
 
 //---------------------where functions go ---------------------------
 
-
 // determines the color (for gainers/loser as it categorical and doesn't need a color scale)
 function determineColor(input){
     var value = parseFloat(input);
@@ -143,7 +125,6 @@ function determineColor(input){
         return ["#B71710", "Loser "];
     }
 };
-
 // ========================== temp fix to get coin info to display when you click on a coin, currently doesn't show tooltip for mobile ================
 // redraws when mouse is moved
 function redrawMouseMove(){
@@ -170,10 +151,7 @@ function redrawMouseOut(){
     redraw()         
   })
 }
-
 //=========================================================================================================================
-
-
 
 // displays coin info deepending on the level of the treemap
 function redraw(){
@@ -181,16 +159,35 @@ function redraw(){
   var x = document.getElementById("coin_info" );
   // console.log(currentCoin);
   if (currentDepth == 2 ) {
-    // if(currentCoin === "Bitcoin"){
-        // document.getElementById("myFrame").src = "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505";
-        document.getElementById("coin_name").innerHTML=currentCoin;
-        // document.getElementById("coin_algo").innerHTML= algoMap[currentCoin][0] ;
-        // document.getElementById("coin_algo_link").href = "http://www.cnn.com/";
 
-        
-
+    // once I put info for rest 99 coins remove if statement.
+    if(currentCoin === "Bitcoin"){
+      document.getElementById("coin_name").innerHTML=currentCoin;
+      document.getElementById("coin_intro").innerHTML=algoMap[currentCoin][10];
+      document.getElementById("coin_site").href=algoMap[currentCoin][6];
+      document.getElementById("coin_github").href=algoMap[currentCoin][8];
+      document.getElementById("coin_whitepaper").href=algoMap[currentCoin][5];
+      document.getElementById("coin_reddit").href=algoMap[currentCoin][13];
+      document.getElementById("coin_twitter").href=algoMap[currentCoin][7];
+      document.getElementById("coin_wiki").href=algoMap[currentCoin][9];
+      document.getElementById("coin_explorer").href=algoMap[currentCoin][11];
+      document.getElementById("coin_founders").innerHTML=algoMap[currentCoin][3];
+      document.getElementById("coin_lang").innerHTML=algoMap[currentCoin][2];
+      document.getElementById("coin_algo").innerHTML=algoMap[currentCoin][0];
+      document.getElementById("coin_proof").innerHTML=algoMap[currentCoin][14];
+      document.getElementById("coin_mine").innerHTML=algoMap[currentCoin][15];
+      document.getElementById("coin_type").innerHTML=algoMap[currentCoin][12];
+      document.getElementById("myFrame").src=algoMap[currentCoin][1];
+      document.getElementById("pb_1").innerHTML=algoMap[currentCoin][16][0];
+      document.getElementById("pb_2").innerHTML=algoMap[currentCoin][16][1];
+      document.getElementById("tech_1").innerHTML=algoMap[currentCoin][17][0];
+      document.getElementById("tech_2").innerHTML=algoMap[currentCoin][17][1];
+      document.getElementById("tech_3").innerHTML=algoMap[currentCoin][17][2];
+      document.getElementById("distributionn").innerHTML=algoMap[currentCoin][18][0];
+      document.getElementById("supplyy").innerHTML=algoMap[currentCoin][19][0];
+      
         x.style.display = "block";
-      // }
+      }
   }
      
   if(currentDepth != 2 ){
@@ -201,28 +198,10 @@ function redraw(){
 }
 
 
-//    ------------------------- function to Dynamically create div elements will go here -----------------------
-//     d3.selectAll("#vizz").selectAll("div").remove()
-
-// // var btn = document.createElement("BUTTON");        // Create a <button> element
-// // var t = document.createTextNode("CLICK ME");       // Create a text node
-// // btn.appendChild(t);                                // Append the text to <button>
-// // document.body.appendChild(btn);
-// var d= document.getElementById('vizz');
-// var dara = document.createElement("div");
-// var para = document.createElement("p");
-// var node = document.createTextNode("This is new.");
-// para.appendChild(node);
-
-
-// dara.appendChild(para);
-// d.appendChild(dara);
-// document.body.appendChild(d);
-
 })
 };
 
-// ------------------functions for dropdown to build diff visuals ----------------
+// ------------------functions for dropdown to build diff visuals, clean up later ----------------
 
 var depthLevel=0;      
 var blockSizeBy="market_cap_usd";      

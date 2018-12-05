@@ -1,21 +1,42 @@
   var algoMap = {};
     algoMap["Bitcoin"]=[
-        "SHA256d", 
-        "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505",
-        "C++",
-        "Satoshi Nakamoto",
-        "9 January 2009", 
-        "https://bitcoin.org/bitcoin.pdf",
-        "https://bitcoin.org/en/",
-        "https://twitter.com/bitcoin",
-        "https://github.com/bitcoinjs/bitcoinjs-lib",
-        "https://en.bitcoinwiki.org/wiki/bitcoin?utm_source=coin360&utm_medium=referral&utm_campaign=coininfo",
+        "SHA256d", //0
+        "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505", //1
+        "C++", //2
+        "Satoshi Nakamoto", //3
+        "9 January 2009",  //4
+        "https://bitcoin.org/bitcoin.pdf", //5
+        "https://bitcoin.org/en/", //6
+        "https://twitter.com/bitcoin", //7
+        "https://github.com/bitcoinjs/bitcoinjs-lib", //8
+        "https://en.bitcoinwiki.org/wiki/bitcoin?utm_source=coin360&utm_medium=referral&utm_campaign=coininfo", //9
         "Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Although other cryptocurrencies have come before, Bitcoin is the first decentralized cryptocurrency - Its reputation has spawned copies and evolution in the space.",
-        "https://www.blockchain.com/explorer",
-        "Coin",
-        "exists",
-        
-        ];
+        "https://www.blockchain.com/explorer", //11
+        "Coin", //12
+        "https://www.reddit.com/r/bitcoin/", //13
+        "Proof of Work", //14
+        "Mineable", //15
+        //16
+        [
+            "Bitcoin borrows from nearly three decades of research by academics, cypherpunk practitioners, and hobbyists who tried to create protocols for decentralized peer-to-peer payment networks with native currencies. Some of the most prominent projects that preceded Bitcoin include: Digicash, b-money, Hashcash, and e-gold. ",
+            "Bitcoin is often associated with Austrian economic theories, anarcho-capitalist principles, and general libertarian politicking by virtue of the exclusive developer community to whom Nakamoto first released their white paper, certain protocol design characteristics, and the central tendency of political affiliations among early Bitcoin investors. A now-famous The Times headline included by Nakamoto in the genesis block’s coinbase signals Bitcoin’s wider potential utility, namely as a tool for anyone seeking alternatives to legacy financial services and sovereign monies. "
+        ],
+        //17
+        [
+            " 'Bitcoin' is a label used for a protocol and a currency. Bitcoin, the protocol, is a distributed, time-stamped ledger of unspent transaction output (UTXO) transfers stored in an append-only chain of 1MB data blocks. A network of mining and economic nodes maintains this blockchain by validating, propagating, and fighting to include mempool transactions in new blocks. Economic nodes (aka 'full nodes') receive transactions from other network participants, validate them against network consensus rules and double-spend vectors, and propagate the transactions to other full nodes that also validate and propagate. Valid transactions are sent to the network's mempool waiting for mining nodes to confirm them via inclusion in the next block.",
+            "Mining nodes work to empty the mempool usually in a highest-to-lowest fee order by picking transactions to include in the next block and racing against each other to generate a hash less than the target number set by Bitcoin's difficulty adjustment algorithm. Proof of work (PoW) is the name for this cryptographic construct that incentives honesty among network participants and allows other mining nodes to costlessly verify the solved hash. Mining difficulty regularly adjusts to maintain Bitcoin's average ten-minute block schedule. Mining nodes add new blocks to whatever chain has the largest accumulated proof of work maintained by a network of economic nodes with downloaded copes if the same chain. Mining blocks is the only way to mint new bitcoins. ",
+            "Bitcoin, the currency, is bits of data usable outside the limitations of the protocol a la scaling solutions like Lightning Network payment channels. A hard supply cap of 21 million bitcoins was introduced in Nakamoto's original source code and reinforced by Pieter Wuille's BIP42, which patched a small supply cap bug"
+        ],
+        //18
+        [
+            "On January 3, 2009, two months after publishing their white paper, Satoshi created the first bitcoins by mining the genesis block, but the block reward (50 BTC) is unspendable due to the original client's block database and transaction database configuration. Block rewards (initially 50 BTC + transaction fees) are claimed every 10 minutes, on average. Block rewards are halved every 210,000 blocks (approximately 4 years)."
+        ],
+        //19
+        ["The rate at which new bitcoins are created is algorithmically cut in half roughly every 4 years (210,000 blocks). Bitcoin has gone through two halvings to date; in November 2012, and again in July 2016. Since blocks are generated every 10 minutes on average, and starting at 50 new bitcoins per block when the system was launched in 2009, this creates a very well-defined supply curve. The stability of Bitcoin's monetary policy a key differentiator versus other crypto assets."]
+
+    ];
+
+
 
     algoMap["XRP"]=[
         "ECDSA", 

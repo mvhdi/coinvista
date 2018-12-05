@@ -59,36 +59,46 @@
   </div>
   <div id="vizz"> </div>
   <div class="tooltip" ><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i>
-  <span class="tooltiptext"><p> The percentage on the bottom of each square is the block size by percentage.  </p> <p> Click on a coin (deepest level) and scroll down for more infomation about it.</p></span>
+    <span class="tooltiptext">
+      <p> The percentage on the bottom of each square is the block size by percentage.  </p> 
+      <p> Click on a coin (deepest level) and scroll down for more infomation about it.</p>
+    </span>
   </div>
-  <div id = "coin_info">
+
+
+  <div id = "coin_info" style="display: none;">
+    <hr>
     <div>
-      <h1 id = "coin_name" style="text-align: center">Bitcoin</h1>
-          <p> <i>Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Although other cryptocurrencies have come before, Bitcoin is the first decentralized cryptocurrency - Its reputation has spawned copies and evolution in the space.</i></p>
+      <h1 id = "coin_name" style="text-align: center"> </h1>
+          <i> 
+            <p id = "coin_intro">  </p>
+        </i>
           <p style="text-align: center "> 
               
-                        <a href="https://bitcoin.org" target="_blank" class="fa fa-link fa-2x"></a>
-                        <a href="https://github.com/bitcoinjs/bitcoinjs-lib" target="_blank" class="fa fa-github fa-2x"></a> 
-                        <a href="https://bitcoin.org/bitcoin.pdf" target="_blank" class="fa fa-file-text-o fa-2x"></a> 
-                        <a href="https://www.reddit.com/r/bitcoin/" target="_blank" class="fa fa-reddit-alien  fa-2x"></a> 
-                        <a href="https://twitter.com/bitcoin" target="_blank" class="fa fa-twitter fa-2x"></a>
-                        <a href="https://www.youtube.com/watch?time_continue=5&v=Um63OQz3bjo" target="_blank" class="fa fa-youtube-play fa-2x"></a>
-                        <a href="https://bitcoinwiki.org/wiki/bitcoin" target="_blank" class= "fa fa-wikipedia-w fa-2x"></a> 
-                        <a href="https://www.blockchain.com/explorer" target="_blank" class= "fa fa-search fa-2x"></a> 
+                        <a id = "coin_site" href="" target="_blank" class="fa fa-link fa-2x"></a>
+                        <a id = "coin_github" href="" target="_blank" class="fa fa-github fa-2x"></a> 
+                        <a id = "coin_whitepaper" href="" target="_blank" class="fa fa-file-text-o fa-2x"></a> 
+                        <a id = "coin_reddit" href="" target="_blank" class="fa fa-reddit-alien  fa-2x"></a> 
+                        <a id = "coin_twitter" href="" target="_blank" class="fa fa-twitter fa-2x"></a>
+                        <a id = "coin_wiki" href="" target="_blank" class= "fa fa-wikipedia-w fa-2x"></a> 
+                        <a id = "coin_explorer" href="" target="_blank" class= "fa fa-search fa-2x"></a> 
           </p>
                         
-                        <p> <a class= "fa fa-users fa-lg" ></a>  Satoshi Nakamoto </p>
-                        <p> <a class= "fa fa-calendar fa-lg" ></a>  9 January 2009 </p>
-                        <p> <a class= "fa fa-code fa-lg"></a>  C++ </p>
-                        <p> <a class= "fa fa-code-fork fa-lg"></a>  SHA256d </p>
-                        <p> <a class= "fa fa-puzzle-piece fa-lg" ></a>  Proof of Work </p>
-                        <p> <a class= "fa fa-linode fa-lg" ></a>  Mineable </p>
-                        <p> <a class= "fa fa-question-circle fa-lg" ></a>  Coin </p>              
+                        <p> <a class= "fa fa-users fa-lg" ></a>  <b id = "coin_founders" >  </b> </p>
+                        <p> <a class= "fa fa-calendar fa-lg" ></a>  <b id = "coin_date" ></b></p>
+                        <p> <a class= "fa fa-code fa-lg"></a>  <b id = "coin_lang" >  </b></p>
+                        <p> <a class= "fa fa-code-fork fa-lg"></a>  <b id = "coin_algo" >  </b></p>
+                        <p> <a class= "fa fa-puzzle-piece fa-lg" ></a>  <b id = "coin_proof" >  </b></p>
+                        <p> <a class= "fa fa-linode fa-lg" ></a>  <b id = "coin_mine" >  </p>
+                        <p> <a class= "fa fa-question-circle fa-lg" ></a>  <b id = "coin_type" >  </b></p>              
     </div>
 
     <div id = "minnnn" style="height:500px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; box-sizing:content-box; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D2330;padding:1px;padding: 0px; margin: 0px;">
       <div style="height:540px;padding:0px;margin:0px; margin-bottom: 0">
-        <iframe id="myFrame" src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;box-sizing:content-box; margin-bottom: 0"></iframe>
+
+        <iframe id="myFrame" src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;box-sizing:content-box; margin-bottom: 0">
+        </iframe>
+        
       </div>
     </div>
     <h3 style="text-align: center"> PROFILE</h3>
@@ -97,12 +107,8 @@
       <label for="background" class="lbl-toggle">Project Background</label>
       <div class="collapsible-content">
         <div class="content-inner">
-          <p>
-            Bitcoin borrows from nearly three decades of research by academics, cypherpunk practitioners, and hobbyists who tried to create protocols for decentralized peer-to-peer payment networks with native currencies. Some of the most prominent projects that preceded Bitcoin include: Digicash, b-money, Hashcash, and e-gold. 
-          </p>
-          <p> 
-            Bitcoin is often associated with Austrian economic theories, anarcho-capitalist principles, and general libertarian politicking by virtue of the exclusive developer community to whom Nakamoto first released their white paper, certain protocol design characteristics, and the central tendency of political affiliations among early Bitcoin investors. A now-famous The Times headline included by Nakamoto in the genesis block’s coinbase signals Bitcoin’s wider potential utility, namely as a tool for anyone seeking alternatives to legacy financial services and sovereign monies. 
-          </p>
+          <p id="pb_1"> </p>
+          <p id="pb_2"> </p>
         </div>
       </div>
     </div>
@@ -112,18 +118,9 @@
       <label for="technology" class="lbl-toggle">Technology</label>
       <div class="collapsible-content">
         <div class="content-inner">
-          <p>
-            "Bitcoin" is a label used for a protocol and a currency.
-          </p>
-          <p>
-            Bitcoin, the protocol, is a distributed, time-stamped ledger of unspent transaction output (UTXO) transfers stored in an append-only chain of 1MB data blocks. A network of mining and economic nodes maintains this blockchain by validating, propagating, and fighting to include mempool transactions in new blocks. Economic nodes (aka "full nodes") receive transactions from other network participants, validate them against network consensus rules and double-spend vectors, and propagate the transactions to other full nodes that also validate and propagate. Valid transactions are sent to the network's mempool waiting for mining nodes to confirm them via inclusion in the next block.
-          </p>
-          <p>
-            Mining nodes work to empty the mempool usually in a highest-to-lowest fee order by picking transactions to include in the next block and racing against each other to generate a hash less than the target number set by Bitcoin's difficulty adjustment algorithm. Proof of work (PoW) is the name for this cryptographic construct that incentives honesty among network participants and allows other mining nodes to costlessly verify the solved hash. Mining difficulty regularly adjusts to maintain Bitcoin's average ten-minute block schedule. Mining nodes add new blocks to whatever chain has the largest accumulated proof of work maintained by a network of economic nodes with downloaded copes if the same chain. Mining blocks is the only way to mint new bitcoins. 
-          </p>
-          <p>
-            Bitcoin, the currency, is bits of data usable outside the limitations of the protocol a la scaling solutions like Lightning Network payment channels. A hard supply cap of 21 million bitcoins was introduced in Nakamoto's original source code and reinforced by Pieter Wuille's BIP42, which patched a small supply cap bug
-          </p>
+          <p id="tech_1"> </p>
+          <p id="tech_2"> </p>
+          <p id="tech_3"> </p>
         </div>
       </div>
     </div>
@@ -133,9 +130,7 @@
       <label for="distribution" class="lbl-toggle">Distribution</label>
       <div class="collapsible-content">
         <div class="content-inner">
-          <p>
-            On January 3, 2009, two months after publishing their white paper, Satoshi created the first bitcoins by mining the genesis block, but the block reward (50 BTC) is unspendable due to the original client's block database and transaction database configuration. Block rewards (initially 50 BTC + transaction fees) are claimed every 10 minutes, on average. Block rewards are halved every 210,000 blocks (approximately 4 years).
-          </p>
+          <p id="distributionn" >  </p>
         </div>
       </div>
     </div>
@@ -145,9 +140,7 @@
       <label for="supply" class="lbl-toggle">Supply Details</label>
       <div class="collapsible-content">
         <div class="content-inner">
-          <p>
-            The rate at which new bitcoins are created is algorithmically cut in half roughly every 4 years (210,000 blocks). Bitcoin has gone through two halvings to date; in November 2012, and again in July 2016. Since blocks are generated every 10 minutes on average, and starting at 50 new bitcoins per block when the system was launched in 2009, this creates a very well-defined supply curve. The stability of Bitcoin's monetary policy a key differentiator versus other crypto assets.
-          </p>
+          <p id="supplyy"> </p>
         </div>
       </div>
     </div>
