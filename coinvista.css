@@ -167,4 +167,44 @@ p {
     margin-right: 50px;
     font-size: 19px;
 }  
+button{
+  font-size: 12px;
+      border: none;
+  background: white;
+  color: #00A0C6;
+   
+    padding: 7px 7px;
+    
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 50%;
+}
+    .tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+    margin-left: 50vw;
+   
+}
 
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    
+    background-color: rgba(0,0,0,.8);
+    color: #fff;
+    text-align: left;
+    border-radius: 6px;
+    padding: 5px 0;
+    
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -220px;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

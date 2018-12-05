@@ -16,6 +16,7 @@ d3.json('https://api.coinlore.com/api/tickers/', function(data) {
   var currentDepth = 0;
 
   // --------- parse the ticker data from the api and put into map
+  
   var i = 0;
   while (i<100){
     // console.log(ticker[i].id)
@@ -39,7 +40,7 @@ d3.json('https://api.coinlore.com/api/tickers/', function(data) {
 // create array of object that is the data input for the treemap
 // algoMap contains extra data not from the ticker, and is created in coinInfo.js
 
-
+//================================== coins are ranked top 100, and last 20 change, so make sure to only show coins I have extra info for.
 var list = [];
 for (var k in tickerMap) {
     // list.push({ "name": tickerMap[k][0], reading: 3, id: 20055 });
@@ -82,12 +83,12 @@ for (var k in tickerMap) {
 // ------------ draw out the actual treemap ---------------
   var coinvista = d3plus.viz()
     .container("#viz")
-    .dev( true )
+    // .dev( true )
     .data(list)
     .type("tree_map")
     .id([cat,"name","Name"])
     .size(blockSizeBy)
-    .height(window.innerHeight-100)
+    .height(window.innerHeight-90)
     .width(window.innerWidth-20)
     .resize( true )
     .depth(depthLevel)
@@ -126,13 +127,13 @@ for (var k in tickerMap) {
       }
     })
     .labels({"align": "center", "valign": "top", "size": 100, "family": "Helvetica Neue", "spacing": 5, "weight":700 })
-    .tooltip({"value": ["rank","Name","market_cap_usd","24h_volume_usd","price_usd", "price_btc" ,"change_1h","change_24h","change_7d","available_supply","max_supply", "algorithm"], "background": "rgba(255,255,255,0.85)"})
+    .tooltip({"value": ["Name","market_cap_usd","24h_volume_usd","price_usd", "price_btc" ,"change_1h","change_24h","change_7d", "algorithm"], "background": "rgba(255,255,255,0.97)"})
     .draw()
 
 //---------------------where functions go ---------------------------
 
 
-// determines the color
+// determines the color (for gainers/loser as it categorical and doesn't need a color scale)
 function determineColor(input){
     var value = parseFloat(input);
     if (value >=0){
@@ -143,6 +144,7 @@ function determineColor(input){
     }
 };
 
+// ========================== temp fix to get coin info to display when you click on a coin, currently doesn't show tooltip for mobile ================
 // redraws when mouse is moved
 function redrawMouseMove(){
   d3.selectAll("#viz").on("mousemove", function(d) {
@@ -169,11 +171,15 @@ function redrawMouseOut(){
   })
 }
 
+//=========================================================================================================================
+
+
+
 // displays coin info deepending on the level of the treemap
 function redraw(){
   // console.log(currentDepth);
   var x = document.getElementById("coin_info" );
-  console.log(currentCoin);
+  // console.log(currentCoin);
   if (currentDepth == 2 ) {
     // if(currentCoin === "Bitcoin"){
         // document.getElementById("myFrame").src = "https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=619&pref_coin_id=1505";
@@ -227,6 +233,12 @@ var colorBy = "color";
 var showLegend = false;
 makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
 
+function updateViz(){
+  d3.selectAll("#viz").selectAll("div").remove();
+    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+
+};
+
 function updateView() {
   var value = document.getElementById("viewSelect").value;
   if (value == "1"){
@@ -235,8 +247,7 @@ function updateView() {
      if (value == "2"){
       depthLevel=0;
    }; 
-   d3.selectAll("#viz").selectAll("div").remove();
-    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+   updateViz();
 };
 
 function updateCat() {
@@ -247,8 +258,7 @@ function updateCat() {
      if (value == "6"){
       cat = "status";
    }; 
-   d3.selectAll("#viz").selectAll("div").remove();
-    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+   updateViz();
 };
 
 function updateBlock() {
@@ -259,8 +269,7 @@ function updateBlock() {
      if (value == "4"){
       blockSizeBy="24h_volume_usd";
    }; 
-   d3.selectAll("#viz").selectAll("div").remove();
-    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+   updateViz();
 };
 
 function updateTime() {
@@ -274,8 +283,7 @@ function updateTime() {
      if (value == "99"){
       period = 9;
    };
-   d3.selectAll("#viz").selectAll("div").remove();
-    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+   updateViz();
 };
 
 function updateMoney() {
@@ -286,34 +294,32 @@ function updateMoney() {
      if (value == "101"){
       currency = "bitcoin";
    }; 
-   d3.selectAll("#viz").selectAll("div").remove();
-    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+   updateViz();
 };
 
 function updateColor() {
   var value = document.getElementById("colorSelect").value;
   if (value == "102"){
-      var colorBy = "color";
-      var showLegend = false;
+      colorBy = "color";
+      showLegend = false;
   };
      if (value == "103"){
-      var colorBy = "market_cap_usd";
-      var showLegend = true;
+      colorBy = "market_cap_usd";
+      showLegend = true;
    };
   if (value == "104"){
-      var colorBy = "24h_volume_usd";
-      var showLegend = true;
+      colorBy = "24h_volume_usd";
+      showLegend = true;
   };
      if (value == "105"){
-      var colorBy = "max_supply";
-      var showLegend = true;
+      colorBy = "max_supply";
+      showLegend = true;
    }; 
      if (value == "106"){
-      var colorBy = "available_supply";
-      var showLegend = true;
+      colorBy = "available_supply";
+      showLegend = true;
    }; 
-   d3.selectAll("#viz").selectAll("div").remove();
-    makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend);
+   updateViz();
 };
 
 
