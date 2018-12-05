@@ -28,7 +28,9 @@ Todo:
 3. Add the option to view just token, coins, or mineable coins/tokens
 4. add treemap for currency exchanges
 5. make clicking and tooltip mobile friendly
-6. use an api with more information, which requires using a server side language, which github pages does not host, so recode and host somewhere else. 
+6. Improve the UI, making it a more prettier and slick one page scroller.
+7. Upgrade the code to use d3plus ver 2.
+7. use an api with more information, which requires using a server side language, which github pages does not host, so recode and host somewhere else. 
 
 How to run: 
 1. In the terminal cd to the directory you cloned this program
