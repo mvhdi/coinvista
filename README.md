@@ -10,9 +10,10 @@ Motivation:
 
 Improvements: 
 1. By viewing by category, you can click on a category and view all the coins in it using the entire screen. I think this better than having to zoom in smaller circles when a category has a bunch of small rectangles. You also have the option to view by subcategory which is the view coin360 only offers.
-2.) Tooltips have more live market information about a coin, and clicking on a coin and scrolling down gives you more backround information about that coin.
-3.) In additon to having all the same options to configure the visualzation, Coinvista has addtional options like viewing winners and losers as category, and it also can color code the treemap by gainers/losers, by market cap, by 24 hour volume, available supply, and max supply.
-4.) D3plus makes coding this visualiztion much simpler and much better.
+2. You can see the size of each block as a percentage
+3. Tooltips have more live market information about a coin, and clicking on a coin and scrolling down gives you more backround information about that coin.
+4. In additon to having all the same options to configure the visualzation, Coinvista has addtional options like viewing winners and losers as category, and it also can color code the treemap by gainers/losers, by market cap, by 24 hour volume, available supply, and max supply.
+5. D3plus makes coding this visualiztion much simpler and much better.
 
 
 Todo:
