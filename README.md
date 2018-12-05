@@ -5,6 +5,12 @@ Visualization of live crypto currency data built with d3plus
 
 <a href="https://coinvista.github.io/coinvista/coinvista.html" target="_blank" >CoinVista</a> 
 
+** site is still being developed, so additonal information is only being showen for bitcoin. I'm currently adding information for about 25 coins a day at min and should have them all in by 12/10/18 **
+
+How to use:
+* If you are viewing by category which is default, click on a block so see the coins on a category, and click on a coin, and scroll down to see more information about it. 
+* Hovering over a block will give you live market data in a tooltip. Hovering over a coin gives you information about that coin, while hover over a category block will give you information about all the coins in that cateogry, with only numerical values like market cap, being a sum off the market caps for all coins in that category.
+
 Motivation: 
 1. Create a better version of <a href="https://coin360.io" target="_blank" >coin360.io</a>, by improving interactions, adding more information per coin,  and creating more visualization options, while simplfying the code as much as possilbe. I choose coin360.io, as it is the best visualization of the live crypto currency market that I've seen.
 
