@@ -1,5 +1,5 @@
 # Coinvista
-Visualization of live crypto currency data built with d3plus
+Visualization of the live crypto-currency market data using a interactive treemap.
 
 
 
