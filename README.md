@@ -2,15 +2,16 @@
 Visualization of the live crypto-currency market data using a interactive treemap.
 
 
-
+Site:
+-------
 <a href="https://coinvista.github.io/coinvista/coinvista.html" target="_blank" >CoinVista</a> 
 
-Data source: <a href="https://api.coinlore.com/api/tickers/" target="_blank" >CoinLore</a>
+Data source
+------
+<a href="https://api.coinlore.com/api/tickers/" target="_blank" >CoinLore</a>
 
-
-
-
-
+Notice
+-------
 ** site is still being developed, so additonal information is only being showen for bitcoin. I'm currently adding information for about 25 coins a day at min and should have them all in by 12/10/18 **
 
 Motivation
