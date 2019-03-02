@@ -1,64 +1,60 @@
-# Coinvista
-Visualization of the live crypto-currency market data using a interactive treemap.
+# [Start Bootstrap - Simple Sidebar](https://startbootstrap.com/template-overviews/simple-sidebar/)
 
+[Simple Sidebar](http://startbootstrap.com/template-overviews/simple-sidebar/) is an off canvas sidebar navigation template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
 
-Site:
--------
-<a href="https://coinvista.github.io/coinvista/coinvista.html" target="_blank" >CoinVista</a> 
+## Preview
 
-Data source
-------
-<a href="https://api.coinlore.com/api/tickers/" target="_blank" >CoinLore</a>
+[![Simple Sidebar Preview](https://startbootstrap.com/assets/img/templates/simple-sidebar.jpg)](https://blackrockdigital.github.io/startbootstrap-simple-sidebar/)
 
-Notice
--------
-** site is still being developed, so additonal information is only being showen for bitcoin. I'm currently adding information for about 25 coins a day at min and should have them all in by 12/10/18 **
+**[View Live Preview](https://blackrockdigital.github.io/startbootstrap-simple-sidebar/)**
 
-Motivation
------------
-1. Create a better version of <a href="https://coin360.io" target="_blank" >coin360.io</a>, by improving interactions, adding more information per coin,  and creating more visualization options, while simplfying the code as much as possilbe. I choose coin360.io, as it is the best visualization of the live crypto currency market that I've seen.
+## Status
 
-How to use
------------
-* If you are viewing by category which is default, click on a block so see the coins on a category, and click on a coin, and scroll down to see more information about it. 
-* Hovering over a block will give you live market data in a tooltip. Hovering over a coin gives you information about that coin, while hover over a category block will give you information about all the coins in that cateogry, with only numerical values like market cap, being a sum off the market caps for all coins in that category.
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-simple-sidebar/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/startbootstrap-simple-sidebar.svg)](https://www.npmjs.com/package/startbootstrap-simple-sidebar)
+[![Build Status](https://travis-ci.org/BlackrockDigital/startbootstrap-simple-sidebar.svg?branch=master)](https://travis-ci.org/BlackrockDigital/startbootstrap-simple-sidebar)
+[![dependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-simple-sidebar/status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-simple-sidebar)
+[![devDependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-simple-sidebar/dev-status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-simple-sidebar?type=dev)
 
-How to run
------------
-1. In the terminal cd to the directory you cloned this program
-2. Run the command "python3 -m http.server", and click ok on the pop up from the chrome browser
-3. Go to http://localhost:8000/
-4. Click on coinvista.html
+## Download and Installation
 
-Pictures
---------
-![Screenshot](1.jpg)
-![Screenshot](4.jpg)
-![Screenshot](2.jpg)
-![Screenshot](3.jpg)
+To begin using this template, choose one of the following options to get started:
+* [Download the latest release on Start Bootstrap](https://startbootstrap.com/template-overviews/simple-sidebar/)
+* Install via npm: `npm i startbootstrap-simple-sidebar`
+* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-simple-sidebar.git`
+* [Fork, Clone, or Download on GitHub](https://github.com/BlackrockDigital/startbootstrap-simple-sidebar)
 
+## Usage
 
+### Basic Usage
 
+After downloading, simply edit the HTML and CSS files included with the template in your favorite text editor to make changes. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
 
+### Advanced Usage
 
-Improvements
-------------
-1. By viewing by category, you can click on a category and view all the coins in it using the entire screen. I think this better than having to zoom in smaller circles when a category has a bunch of small rectangles. You also have the option to view by subcategory which is the view coin360 only offers.
-2. You can see the size of each block as a percentage
-3. Tooltips have more live market information about a coin, and clicking on a coin and scrolling down gives you more backround information about that coin.
-4. In additon to having all the same options to configure the visualzation, Coinvista has addtional options like viewing winners and losers as category, and it also can color code the treemap by gainers/losers, by market cap, by 24 hour volume, available supply, and max supply.
-5. D3plus makes coding this visualiztion much simpler and much better.
+After installation, run `npm install` and then run `gulp dev` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
 
+You must have npm and Gulp installed globally on your machine in order to use these features.
 
-Todo
---------
-1. Add backround information for the remaining 99 coins/tokens.
-2. Add ether and eos as currency options
-3. Add the option to view just token, coins, or mineable coins/tokens
-4. add treemap for currency exchanges
-5. make clicking and tooltip mobile friendly
-6. Improve the UI, making it a more prettier and slick one page scroller.
-7. Upgrade the code to use d3plus ver 2.
-7. use an api with more information, which requires using a server side language, which github pages does not host, so recode and host somewhere else. 
+## Bugs and Issues
 
+Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/simple-sidebar/).
 
+## About
+
+Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+
+* https://startbootstrap.com
+* https://twitter.com/SBootstrap
+
+Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
+
+* http://davidmiller.io
+* https://twitter.com/davidmillerskt
+* https://github.com/davidtmiller
+
+Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+
+## Copyright and License
+
+Copyright 2013-2019 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-simple-sidebar/blob/gh-pages/LICENSE) license.

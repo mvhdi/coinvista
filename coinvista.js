@@ -2,6 +2,16 @@
 // start: 11/22/18
 // https://github.com/mvhdi/coinvista
 // https://github.com/coinvista/coinvista
+var name = "codemzy";
+$.get('https://newsapi.org/v2/everything?q=bitcoin&apiKey=24e981491ed740bb872f3e2dd7aceea0' , function(response) {
+    console.log(response);
+});
+
+$.get('https://data.messari.io/api/v1/assets/eth/profile' , function(response) {
+    console.log(response);
+});
+
+
 function makeviz(blockSizeBy,depthLevel,cat,period,currency,colorBy, showLegend){
 // All viz functions need to called inside the d3.json to access ticker data
 d3.json('https://api.coinlore.com/api/tickers/', function(data) {
@@ -69,14 +79,14 @@ for (var k in tickerMap) {
     .container("#viz")
     // .dev( true )
     .data(list)
-    .type("tree_map")
-    .id([cat,"name","Name"])
+      .type({"mode": "sqarify"})
+      .id([cat,"name","Name"])
     .size(blockSizeBy)
-    .height(window.innerHeight-90)
-    .width(window.innerWidth-20)
+    .height(window.innerHeight-5)
+    .width(window.innerWidth-5)
     .resize( true )
     .depth(depthLevel)
-    .font({ "size": 20, "spacing": 5, "weight":700 })
+    .font({ "size": 20, "spacing": 5, "weight":700, "family":"Avenir Next" })
     .color(colorBy)
     .legend({"value": showLegend})
     .format({"text": function(text,key){
@@ -148,7 +158,7 @@ function redrawMouseClick(){
 // redraws when mouse is moved off the shape
 function redrawMouseOut(){
   d3.selectAll("#viz").on("mouseout", function(d) {
-    redraw()         
+    redraw()
   })
 }
 //=========================================================================================================================
@@ -185,6 +195,8 @@ function redraw(){
       document.getElementById("tech_3").innerHTML=algoMap[currentCoin][17][2];
       document.getElementById("distributionn").innerHTML=algoMap[currentCoin][18][0];
       document.getElementById("supplyy").innerHTML=algoMap[currentCoin][19][0];
+        document.getElementById('viz').style.height = "15vh"
+        window.dispatchEvent(new Event('resize'));
       
         x.style.display = "block";
       }
@@ -193,6 +205,8 @@ function redraw(){
   if(currentDepth != 2 ){
     // console.log("you")
       x.style.display = "none";
+      document.getElementById('viz').style.height = "93vh"
+      window.dispatchEvent(new Event('resize'));
   }
 
 }
@@ -229,6 +243,9 @@ function updateView() {
    updateViz();
 };
 
+function reViz(){
+    window.dispatchEvent(new Event('resize'));
+}
 function updateCat() {
   var value = document.getElementById("catSelect").value;
   if (value == "5"){
