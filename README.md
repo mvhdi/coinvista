@@ -4,7 +4,7 @@ Visualization of the live crypto-currency market data using a interactive treema
 
 Site:
 -------
-<a href="https://coinvista.github.io/coinvista/coinvista.html" target="_blank" >CoinVista</a> 
+<a href="https://coinvista.github.io/coinvista" target="_blank" >CoinVista</a> 
 
 Data source
 ------
