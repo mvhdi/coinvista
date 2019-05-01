@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Simple Sidebar - Start Bootstrap Template</title>
+  <title>CoinVista</title>
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -46,45 +46,68 @@
           </div>
           &nbsp;&nbsp;
 
+          <div style="text-align: center" class="form-group">
+              <label  for="catSelect"> <b> CATEGORIZE BY: </b></label>
+              &nbsp;&nbsp;
+              &nbsp;&nbsp;
+              <select  style="text-align: center" class="form-control" id="catSelect" onchange="updateCat()">
+                  <option value="5">ALGORITHM
+                  <option value="6">GAINERS/LOSERS
+              </select>
+          </div>
+          &nbsp;&nbsp;
 
-          <b> CATEGORIZE BY: </b>
-          <select id="catSelect" onchange="updateCat()">
-              <option value="5">ALGORITHM
-              <option value="6">GAINERS/LOSERS
-          </select>
-        &nbsp;&nbsp;
+          <div style="text-align: center" class="form-group">
+              <label  for="blockSelect"> <b> BLOCK SIZE BY: </b></label>
+              &nbsp;&nbsp;
+              &nbsp;&nbsp;
+              <select  style="text-align: center" class="form-control" id="blockSelect" onchange="updateBlock()">
+                  <option value="3">MARKET SHARE
+                  <option value="4">24H VOLUME
+              </select>
+          </div>
+          &nbsp;&nbsp;
 
-        <b> BLOCK SIZE BY: </b>
-        <select id="blockSelect" onchange="updateBlock()">
-          <option value="3">MARKET SHARE
-          <option value="4">24H VOLUME
-        </select>
-        &nbsp;&nbsp;
-        <b> TIME PERIOD: </b>
-        <select id="timeSelect" onchange="updateTime()">
-          <option value="8">24 Hours
-          <option value="7">1 Hour
+          <div style="text-align: center" class="form-group">
+              <label  for="timeSelect"> <b> TIME PERIOD: </b></label>
+              &nbsp;&nbsp;
+              &nbsp;&nbsp;
+              <select  style="text-align: center" class="form-control" id="timeSelect" onchange="updateTime()">
+                  <option value="7">1 Hour
+                  <option value="8">24 Hours
+                  <option value="99">7 Days
+              </select>
+          </div>
+          &nbsp;&nbsp;
 
-          <option value="99">7 Days
-        </select>
+          <div style="text-align: center" class="form-group">
+              <label  for="moneySelect"> <b> CURRENCY: </b></label>
+              &nbsp;&nbsp;
+              &nbsp;&nbsp;
+              <select  style="text-align: center" class="form-control" id="moneySelect" onchange="updateMoney()">
+                  <option value="100">USD
+                  <option value="101">BITCOIN
+              </select>
+          </div>
+          &nbsp;&nbsp;
 
-        &nbsp;&nbsp;
-        <b> CURRENCY: </b>
-        <select id="moneySelect" onchange="updateMoney()">
-          <option value="100">USD
-          <option value="101">BITCOIN
-        </select>
-        &nbsp;&nbsp;
-        <b> Color by: </b>
-        <select id="colorSelect" onchange="updateColor()">
-          <option value="102">GAINERS/LOSERS
-          <option value="103">MARKET CAP USD
-          <option value="104">24H VOLUME USD
-          <option value="105">MAX SUPPLY
-          <option value="106">AVAILABLE SUPPLY
-        </select>
+
+          <div style="text-align: center" class="form-group">
+              <label  for="colorSelect"> <b> CURRENCY: </b></label>
+              &nbsp;&nbsp;
+              &nbsp;&nbsp;
+              <select  style="text-align: center" class="form-control" id="colorSelect" onchange="updateColor()">
+                  <option value="102">GAINERS/LOSERS
+                  <option value="103">MARKET CAP USD
+                  <option value="104">24H VOLUME USD
+                  <option value="105">MAX SUPPLY
+                  <option value="106">AVAILABLE SUPPLY
+              </select>
+          </div>
+
+
       </div>
-        &nbsp;&nbsp;
+
         <div>
         <button style="margin-left: 35%" class="btn btn-primary" id="update" onclick="updateViz()">  <i class="fas fa-sync-alt"></i> </button>
         </div>
@@ -143,95 +166,95 @@
   <div id="vizz"> </div>
 
 
-  <div id = "coin_info" style="display: none;">
-    <hr>
-    <div>
-      <h1 id = "coin_name" style="text-align: center"> </h1>
-          <i>
-            <p id = "coin_intro">  </p>
-        </i>
-          <p style="text-align: center "> 
-              
-                        <a id = "coin_site" href="" target="_blank" class="fa fa-link fa-2x"></a>
-                        <a id = "coin_github" href="" target="_blank" class="fa fa-github fa-2x"></a> 
-                        <a id = "coin_whitepaper" href="" target="_blank" class="fa fa-file-text-o fa-2x"></a> 
-                        <a id = "coin_reddit" href="" target="_blank" class="fa fa-reddit-alien  fa-2x"></a> 
-                        <a id = "coin_twitter" href="" target="_blank" class="fa fa-twitter fa-2x"></a>
-                        <a id = "coin_wiki" href="" target="_blank" class= "fa fa-wikipedia-w fa-2x"></a> 
-                        <a id = "coin_explorer" href="" target="_blank" class= "fa fa-search fa-2x"></a> 
-          </p>
-                        
-                        <p> <a class= "fa fa-users fa-lg" ></a>  <b id = "coin_founders" >  </b> </p>
-                        <p> <a class= "fa fa-calendar fa-lg" ></a>  <b id = "coin_date" ></b></p>
-                        <p> <a class= "fa fa-code fa-lg"></a>  <b id = "coin_lang" >  </b></p>
-                        <p> <a class= "fa fa-code-fork fa-lg"></a>  <b id = "coin_algo" >  </b></p>
-                        <p> <a class= "fa fa-puzzle-piece fa-lg" ></a>  <b id = "coin_proof" >  </b></p>
-                        <p> <a class= "fa fa-linode fa-lg" ></a>  <b id = "coin_mine" >  </p>
-                        <p> <a class= "fa fa-question-circle fa-lg" ></a>  <b id = "coin_type" >  </b></p>              
-    </div>
+  <!--<div id = "coin_info" style="display: none;">-->
+    <!--<hr>-->
+    <!--<div>-->
+      <!--<h1 id = "coin_name" style="text-align: center"> </h1>-->
+          <!--<i>-->
+            <!--<p id = "coin_intro">  </p>-->
+        <!--</i>-->
+          <!--<p style="text-align: center "> -->
+              <!---->
+                        <!--<a id = "coin_site" href="" target="_blank" class="fa fa-link fa-2x"></a>-->
+                        <!--<a id = "coin_github" href="" target="_blank" class="fa fa-github fa-2x"></a> -->
+                        <!--<a id = "coin_whitepaper" href="" target="_blank" class="fa fa-file-text-o fa-2x"></a> -->
+                        <!--<a id = "coin_reddit" href="" target="_blank" class="fa fa-reddit-alien  fa-2x"></a> -->
+                        <!--<a id = "coin_twitter" href="" target="_blank" class="fa fa-twitter fa-2x"></a>-->
+                        <!--<a id = "coin_wiki" href="" target="_blank" class= "fa fa-wikipedia-w fa-2x"></a> -->
+                        <!--<a id = "coin_explorer" href="" target="_blank" class= "fa fa-search fa-2x"></a> -->
+          <!--</p>-->
+                        <!---->
+                        <!--<p> <a class= "fa fa-users fa-lg" ></a>  <b id = "coin_founders" >  </b> </p>-->
+                        <!--<p> <a class= "fa fa-calendar fa-lg" ></a>  <b id = "coin_date" ></b></p>-->
+                        <!--<p> <a class= "fa fa-code fa-lg"></a>  <b id = "coin_lang" >  </b></p>-->
+                        <!--<p> <a class= "fa fa-code-fork fa-lg"></a>  <b id = "coin_algo" >  </b></p>-->
+                        <!--<p> <a class= "fa fa-puzzle-piece fa-lg" ></a>  <b id = "coin_proof" >  </b></p>-->
+                        <!--<p> <a class= "fa fa-linode fa-lg" ></a>  <b id = "coin_mine" >  </p>-->
+                        <!--<p> <a class= "fa fa-question-circle fa-lg" ></a>  <b id = "coin_type" >  </b></p>              -->
+    <!--</div>-->
 
-    <div id = "minnnn" style="height:500px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; box-sizing:content-box; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D2330;padding:1px;padding: 0px; margin: 0px;">
-      <div style="height:540px;padding:0px;margin:0px; margin-bottom: 0">
+    <!--<div id = "minnnn" style="height:500px; background-color: #1D2330; overflow:hidden; box-sizing: border-box; border: 1px solid #282E3B; border-radius: 4px; text-align: right; line-height:14px; font-size: 12px; box-sizing:content-box; font-feature-settings: normal; text-size-adjust: 100%; box-shadow: inset 0 -20px 0 0 #1D2330;padding:1px;padding: 0px; margin: 0px;">-->
+      <!--<div style="height:540px;padding:0px;margin:0px; margin-bottom: 0">-->
 
-        <iframe id="myFrame" src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;box-sizing:content-box; margin-bottom: 0">
-        </iframe>
+        <!--<iframe id="myFrame" src="https://widget.coinlib.io/widget?type=chart&theme=dark&coin_id=859&pref_coin_id=1505" width="100%" height="536" scrolling="auto" marginwidth="0" marginheight="0" frameborder="0" border="0" style="border:0;margin:0;padding:0;line-height:14px;box-sizing:content-box; margin-bottom: 0">-->
+        <!--</iframe>-->
 
-      </div>
+      <!--</div>-->
 
-    </div>
-    <h3 style="text-align: center"> PROFILE</h3>
-    <div class="wrap-collabsible">
-      <input id="background" class="toggle" type="checkbox">
-      <label for="background" class="lbl-toggle">Project Background</label>
-      <div class="collapsible-content">
-        <div class="content-inner">
-          <p id="pb_1"> </p>
-          <p id="pb_2"> </p>
-        </div>
-      </div>
-    </div>
+    <!--</div>-->
+    <!--<h3 style="text-align: center"> PROFILE</h3>-->
+    <!--<div class="wrap-collabsible">-->
+      <!--<input id="background" class="toggle" type="checkbox">-->
+      <!--<label for="background" class="lbl-toggle">Project Background</label>-->
+      <!--<div class="collapsible-content">-->
+        <!--<div class="content-inner">-->
+          <!--<p id="pb_1"> </p>-->
+          <!--<p id="pb_2"> </p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div class="wrap-collabsible">
-      <input id="technology" class="toggle" type="checkbox">
-      <label for="technology" class="lbl-toggle">Technology</label>
-      <div class="collapsible-content">
-        <div class="content-inner">
-          <p id="tech_1"> </p>
-          <p id="tech_2"> </p>
-          <p id="tech_3"> </p>
-        </div>
-      </div>
-    </div>
+    <!--<div class="wrap-collabsible">-->
+      <!--<input id="technology" class="toggle" type="checkbox">-->
+      <!--<label for="technology" class="lbl-toggle">Technology</label>-->
+      <!--<div class="collapsible-content">-->
+        <!--<div class="content-inner">-->
+          <!--<p id="tech_1"> </p>-->
+          <!--<p id="tech_2"> </p>-->
+          <!--<p id="tech_3"> </p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div class="wrap-collabsible">
-      <input id="distribution" class="toggle" type="checkbox">
-      <label for="distribution" class="lbl-toggle">Distribution</label>
-      <div class="collapsible-content">
-        <div class="content-inner">
-          <p id="distributionn" >  </p>
-        </div>
-      </div>
-    </div>
+    <!--<div class="wrap-collabsible">-->
+      <!--<input id="distribution" class="toggle" type="checkbox">-->
+      <!--<label for="distribution" class="lbl-toggle">Distribution</label>-->
+      <!--<div class="collapsible-content">-->
+        <!--<div class="content-inner">-->
+          <!--<p id="distributionn" >  </p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <div class="wrap-collabsible">
-      <input id="supply" class="toggle" type="checkbox">
-      <label for="supply" class="lbl-toggle">Supply Details</label>
-      <div class="collapsible-content">
-        <div class="content-inner">
-          <p id="supplyy"> </p>
-        </div>
-      </div>
-    </div>
+    <!--<div class="wrap-collabsible">-->
+      <!--<input id="supply" class="toggle" type="checkbox">-->
+      <!--<label for="supply" class="lbl-toggle">Supply Details</label>-->
+      <!--<div class="collapsible-content">-->
+        <!--<div class="content-inner">-->
+          <!--<p id="supplyy"> </p>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
 
-    <div class="footer" style="margin-bottom: 3%">
-      <p>© 2018  Built by  <a href="https://github.com/mvhdi" target="_blank" >Mahdi</a>  with <a href="https://github.com/alexandersimoes/d3plus/tree/2.0" target="_blank" >D3Plus</a></p>
-    </div>
-  </div>
+    <!--<div class="footer" style="margin-bottom: 3%">-->
+      <!--<p>© 2018  Built by  <a href="https://github.com/mvhdi" target="_blank" >Mahdi</a>  with <a href="https://github.com/alexandersimoes/d3plus/tree/2.0" target="_blank" >D3Plus</a></p>-->
+    <!--</div>-->
+  <!--</div>-->
 
     <!-- /#page-content-wrapper -->
 
-  </div>
+  <!--</div>-->
   <!-- /#wrapper -->
 
   <!-- Bootstrap core JavaScript -->
